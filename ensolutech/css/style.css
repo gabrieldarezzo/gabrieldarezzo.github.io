@@ -1,0 +1,218 @@
+html {
+    height:100%; width:100%;
+}
+body {
+    color: #fff; 
+    text-align: left; 
+    padding:0; 
+    margin:0; 
+    height:100%; 
+    width:100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+body a {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+a {
+    text-decoration: none;
+}
+#header {
+    position:relative; 
+    float:left; 
+    background-color: #3B5268; 
+    width: 100%; 
+    height: auto;
+}
+#wrapper {
+  position:relative; 
+  overflow:auto; 
+  width:100%; 
+  height: 100%; 
+  margin:0px auto; 
+  padding:0; 
+  background-color:#f7f7f7;
+}
+#container {
+    clear:left; 
+    float:left; 
+    /*overflow:hidden; */
+    width:100%; 
+    height:calc(100% - 65px);
+}
+#sidebar {
+    position: relative; 
+    float: left; 
+    background-color:#46617A; 
+    width: 220px; 
+    /*overflow:hidden;*/ 
+    height: auto;
+}
+#content {
+    position: relative; 
+    float: right; 
+    /*overflow:hidden;*/
+    background-color:#f7f7f7; 
+    height: auto; 
+    width: calc(100% - 220px);
+    }
+#topo {
+    position: relative;    
+    width: calc(100% - 40px);
+    margin: 40px 20px;        
+    height: 75px;
+    border-bottom: 1px solid #cacaca;
+}
+#folha {
+    width: calc(100% - 40px);
+    margin: 40px 20px;
+    background-color: #fff;
+    height: 400px;
+}
+.canto_folha {
+    background-image: url(../imagens/canto-folha.png);
+    background-repeat: no-repeat;
+    top:0;
+    left:0;
+}
+#conteudo_folha {
+    width: 92%;
+    height: 80%;
+    background-color: #777;
+    margin: auto;
+    top: 50px;
+    position: relative;
+}
+#logo {
+    width: 220px; 
+    height: 65px;
+    float: left;
+}
+#logo img {
+    margin: 19px 20px;
+}
+#menu {
+    width: auto;
+    height: 65px;
+    float: left;
+}
+#menu ul {
+    margin: 0;
+    padding: 0;
+}
+#menu ul li {
+    float: left;
+    list-style: none;
+}
+#menu ul li a {
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    font-size: 14px !important;
+    padding: 0 20px;
+    line-height: 65px; 
+}
+#menu ul li a i.nav_icon {
+    margin-right: 10px;
+    width: 15px;
+}
+#menu ul li a:hover {
+    background: #32aba5;
+    color: #ffffff;
+}
+#menu ul li a:active {
+    background: #32aba5;
+    color: #ffffff;
+}
+#admin {
+    height: 65px;
+    width: auto;
+    margin:0;
+    padding: 0;
+    float:right;
+}
+#admin ul {
+    margin: 0;
+    padding: 0;
+}
+#admin ul li {
+    list-style: none;
+}
+#admin ul li a {
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    font-size: 14px !important;
+    padding: 0 20px;
+    line-height: 65px; 
+}
+#admin ul li a i {
+    margin-left: 10px;
+    width: 15px;
+    color:#5b7790;
+}
+#admin ul li a:hover {
+    color: #32aba5;
+}
+#admin ul li a:active {
+    color: #32aba5;
+}
+#apps {
+    width: 100%;
+    margin-top: 40px;
+}
+#apps ul {
+    margin: 0;
+    padding: 0;
+}
+#apps ul li {
+    list-style: none;
+}
+#apps ul li a {
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    font-size: 18px;
+    padding: 0 10px 0 20px;
+    line-height: 45px; 
+}
+#apps ul li a i.nav_icon {
+    margin-right: 10px;
+    width: 20px;
+}
+#apps ul li a:hover {
+    background: #3B5268;
+    color: #ffffff;
+}
+#apps ul li a:active {
+    background: #3B5268;
+    color: #ffffff;
+}
+#apps ul li a span.fa-angle-right {
+    float: right;
+    line-height: 45px;
+}
+a.btn-verde {
+    color: #fff;
+    background-color: #06D995;
+    padding: 10px 12px;
+    font-size: 14px;
+    text-align: center;
+}
+a.btn-verde:hover {
+    color: #fff;
+    background-color: #0EB37D;
+}
+.icon_marg {
+    margin-right: 5px;
+}
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
