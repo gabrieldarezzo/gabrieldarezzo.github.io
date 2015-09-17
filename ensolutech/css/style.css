@@ -71,7 +71,7 @@ a {
     width: calc(100% - 40px);
     margin: 40px 20px;
     background-color: #fff;
-    height: 400px;
+    height: 480px;
 }
 .canto_folha {
     background-image: url(../imagens/canto-folha.png);
@@ -82,7 +82,7 @@ a {
 #conteudo_folha {
     width: 92%;
     height: 80%;
-    background-color: #777;
+    /* background-color: #777; */
     margin: auto;
     top: 50px;
     position: relative;
@@ -216,3 +216,91 @@ a.btn-verde:hover {
 .left {
     float: left;
 }
+
+
+h1.total-header{
+	color: #3B5268;
+	margin-top: 0px;
+}
+
+.two-col{
+	width: 50%;
+    float: left;
+	height: auto;
+}
+
+.four-col{
+	padding: 10px;
+	margin: 0.5%;
+	width: 23%;
+    float: left;
+	height: auto;
+	background-color: #FFF;
+	color: #000;
+	border-style: solid;
+	border-color: #87878C;
+    border-width: 1px;
+	font-size: 10px;
+}
+
+hr.four-col{
+	
+}
+
+.act-rel{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: #FFF;
+}
+
+.desc-rel{
+	background-color: #EEEEED;
+	padding: 5px;
+}
+
+.color-del{
+	background-color: #E54C3B;
+	
+}
+.color-edit{
+	background-color: #2BACA5;
+}
+
+
+#filtros select {
+	color: #FFF;
+	background: transparent;
+	background-color: #3186BC;
+	width: 180px;
+	padding: 5px;
+	/* font-size: 16px; */
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	/* height: 34px; */
+	/* -webkit-appearance: none; */
+}
+
+.btn-rel{
+	text-align:center;
+	padding: 9px;
+	padding-bottom: 7px;
+}
+
+#div-form, #div-form table{
+	color: #000;
+	
+}
+
+#div-form table th{
+	text-align: right;
+	padding-right: 5px;
+}
+
+#div-form table th.btn{
+	padding: 15px;
+	text-align:center;
+}
+

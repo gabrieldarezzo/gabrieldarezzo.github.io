@@ -5,8 +5,7 @@
     <!-- <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' /> -->
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="css/font-lato.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/custom.js"></script>
+	
 </head>
     <body>
         <div id="wrapper"> 
@@ -49,21 +48,129 @@
                             <li><a href="#"><i class="fa fa-barcode nav_icon"></i>Código de barras<span class="fa fa-angle-right"></span></a></li>
                             <li><a href="#"><i class="fa fa-qrcode nav_icon"></i>QR Code<span class="fa fa-angle-right"></span></a></li>
                             <li><a href="#"><i class="fa fa-pencil nav_icon"></i>Assinatura digital<span class="fa fa-angle-right"></span></a></li>
-                    </ul>
+						</ul>
                     </div>
                 </div>
                 <div id="content">
                     <div id="topo">
-                        <a href="#" class="btn-verde right"><span class="fa fa-plus-square-o icon_marg"></span> Criar novo Relatório </a>
-                    </div>
+						<div class="two-col">
+							<h1 class="total-header"><i class="fa fa-file nav_icon"></i> Relatórios</h1>
+						</div>
+						
+						<div class="two-col">
+							<a href="#div-form" class="fancybox btn-verde right"><span class="fa fa-plus-square-o icon_marg"></span> Criar novo Relatório </a>
+						</div>
+						
+						
+						<div id="div-form" style="display:none;">
+							<table>
+								<tr>
+									<th>Titulo do Relatório</th>
+									<td>
+										<input type="text" name="" id="" />
+									</td>
+								</tr>
+								<tr>
+									<th>Cidade</th>
+									<td>
+										<input type="text" name="" id="" />
+									</td>
+								</tr>
+								<tr>
+									<th>Categoria</th>
+									<td>
+										<input type="text" name="" id="" />
+									</td>
+								</tr>
+								<tr>
+									<th colspan="2" class="btn">
+										<a class="btn-verde"><span class="fa fa-plus-square-o icon_marg"></span> Criar novo Relatório </a>
+									</th>
+								</tr>
+								
+							
+							</table>
+						</div>
+						
+					
+					</div>
                     <div id="folha" class="canto_folha">
+						<div id="filtros">
+							<select name="" id="">
+								<option value="">Filtrar por cliente</option>
+							</select>
+							
+							<select name="" id="">
+								<option value="">Filtrar por categoria</option>
+							</select>
+							
+							<select name="" id="">
+								<option value="">Organizar por</option>
+							</select>
+						</div>
+						
                         <div id="conteudo_folha">
-                            
-                        </div>
+                            <div class="four-col">
+								<div class="desc-rel right">Relatório de energia</div>
+								<img src="imagens/empt.png" alt="not-foud" />
+								<p><strong>Proprietário: </strong>Rafael, 3 página(s)</p>
+								<p><strong>Cliente: </strong>Fast Shop</p>
+								<p><strong>Criado em: </strong>20/07/2015</p>
+								<p><strong>Editado em: </strong>22/07/2015</p>
+								<hr />
+								<div class="btn-rel">
+									<a href="" class="act-rel color-del"><i class="fa fa-trash-o nav_icon"></i> Apagar Relatório</a>
+									<a href="" class="act-rel color-edit"><i class="fa fa-pencil-square-o nav_icon"></i> Editar Relatório</a>
+								</div>
+								
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
         </div>
     </body>
+	
+	<!-- JavaScript Load-->
+	<script src="js/jquery.min.js"></script>
+    <script src="js/custom.js"></script>
+	
+	<script type="text/javascript" src="js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	<script type="text/javascript" src="js/source/jquery.fancybox.js?v=2.1.5"></script>
+	<link   type="text/css" 	   href="js/source/jquery.fancybox.css?v=2.1.5" media="screen" rel="stylesheet"/>
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			console.log($('.fancybox').fancybox());
+			
+			/*
+			$('.fancybox-media').attr('rel', 'media-gallery').fancybox({
+				openEffect : 'none',
+				closeEffect : 'none',
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				arrows : true,
+				helpers : {
+					media : {},
+					buttons : {}
+				}
+				
+			});
+			
+			$(".fancyFrame").fancybox({
+				'width'				: '60%',
+				'height'			: '100%',
+				'autoScale'     	: true,
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'type'				: 'iframe'
+			});
+			*/
+		});
+	</script>
+	
 
 </html>
