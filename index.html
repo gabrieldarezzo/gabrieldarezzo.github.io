@@ -1,60 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="imagens/fav-ico.png">
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<link rel="stylesheet" type="text/css" href="custom.css">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/carrinho.js"></script>
 	
-	<!-- Fonts -->
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/font-lato.css" rel="stylesheet" type="text/css">
- </head>
-
-  <body>
-
-    <div class="container">
-
-       <form class="form-signin" method="POST" action="modelo-relatorio.html">
-        <h2 class="form-signin-heading">RELATÓRIOS
-		<img src="imagens/logo-workfy.png">
-		</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-		<input type="email" id="inputEmail" class="form-control" placeholder="&#61447; Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="&#xf023; Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Lembrar de mim
-          </label>
-        </div>
-        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>-->
-		<a class="btn btn-lg btn-primary btn-block" href="modelo-relatorio.html">Entrar</a>
+	<div id="produtos">
+		<input type="submit" value="Fone de Ouvido $20" data-vlr="20">
+		<br />
+		<input type="submit" value="Sua Mãe $1" data-vlr="1">
 		
-		<div class="checkbox">
-          <label>
-            <a href="">Perdeu a senha?</a>
-          </label>
-        </div>
-		
-      </form>
-
-    </div> <!-- /container -->
+	</div>
 	
-	<script type="text/javascript"></script>
 
+	<!-- The list of food is displayed in the following div -->    
+	<div id="foods"></div>
+	<hr />
+	Total: <span id="vlr_total"></span>
 
-    
-  </body>
+</body>
 </html>

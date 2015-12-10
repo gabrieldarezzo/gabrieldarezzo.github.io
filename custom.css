@@ -1,0 +1,19 @@
+body, html{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#produtos input{
+	margin: 15px;
+	padding: 15px;
+	
+}
+
+#foods{
+	padding: 10px;
+}
+
+	#foods a{
+	padding: 10px;
+}
