@@ -1,0 +1,23 @@
+html, body{
+	padding: 0px;
+	margin: 0px;
+}
+
+#wrapper{
+	width: 100%;
+	height: 100%;
+	width:100%;
+	padding-bottom: 30px;
+}
+
+#menu{
+	background-color: red;
+	float: left;
+	width:30%;
+}
+
+#conteudo{
+	background-color: yellow;
+	float: left;
+	width:70%;
+}
