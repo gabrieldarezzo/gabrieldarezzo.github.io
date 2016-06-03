@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    
+	<script type="text/javascript">
+		function initMap() {
+			var latlng = new google.maps.LatLng(-22.4964427, -44.1052461);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center: latlng,
+				zoom: 17,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+			var marker = new google.maps.Marker({
+				position: latlng,
+				map: map,
+				title: 'texto aqui...',
+				draggable: true
+			});
+		}
+	</script>
+	
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRHh5pB2mZomU1aRoiAxbsyTzJOopdkG0&callback=initMap"></script>
+  </body>
+</html>
