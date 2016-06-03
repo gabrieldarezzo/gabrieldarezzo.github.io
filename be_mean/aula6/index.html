@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+	<link rel="stylesheet" href="../node_modules/materialize-css/css/materialize.min.css" />
+	<style type="text/css">
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+			padding-bottom: 40px;
+		}
+	</style>
+</head>
+<body data-ng-controller="UserController as User">
+	<section class="row wrapper">
+		<h1>{{User.titulo}}</h1>
+		<p class="col s12">
+			<label>Name:
+				<input type="text" data-ng-model="form.User.name" />
+			</label>
+			<br />
+			<label>Email:
+				<input type="text" data-ng-model="form.User.email" />
+			</label>
+		</p>
+		<button data-ng-click="User.add(form.User)" class="btn btn-large green waves-effect waves-light col s12" type="submit" name="action">Add</button>
+		
+		<!-- <span data-ng-init="predicate = 'name'; reverse = true; "></span> Não utilizo mais isto, função sortResults substitiu -->
+		<table>
+			<thead>
+				<tr>
+					<th colspan="{{User.users.keyslength}}">
+						<label>Busca: <input type="text" data-ng-model="searchUser" placeholder="Filtrar por Usúarios"/></label>
+					</th>
+				</tr>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr data-ng-repeat="user in User.users | filter:searchUser track by $index ">
+					<td>
+						<input type="checkbox" id="user-{{$index}}" ng-model="user.selecionado" />
+						<label for="user-{{$index}}"></label>
+					</td>
+					<td>{{user.name}}</td>
+					<td>{{user.email}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button data-ng-click="User.remove(User.users)" class="btn btn-large red waves-effect waves-light col s12" >DELETE</button>
+	</section>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript">
+	
+		/*
+		var myarr = [1,2,3,4];
+		var b = myarr.slice(); //Copy of array
+		myarr.splice(2, 1); //remove o 3....
+		
+		console.log(myarr);
+		console.log(b);
+		*/
+		
+		/*
+		for(x in myarr){
+			if(myarr[x] == 3 || myarr[x] == 2){
+				c_myarr.splice(x, 1);
+			}
+		}
+		console.log(c_myarr);
+		*/
+	
+		//Ordena um Objeto de acordo com a coluna selecionada
+		function sortResults(arr, prop, asc) {
+			var arr = arr.sort(function(a, b) {
+				if (asc) {
+					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+				} else {
+					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+				}
+			});
+			return arr;
+		}
+		
+		angular.module('BeMEAN', [])
+			.controller('UserController', UserController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			/*
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Roberto'	,email:'robert@teste.com.br'}
+				,{name: 'Suissa'	,email:'susu@gmail.com'}
+				,{name: 'Zi'		,email:'ai@test.com'}
+			];
+			*/
+			vm.users = [
+				 {name: 'A'	,email:'z@yahoo.com.br'}
+				,{name: 'B'	,email:'c@teste.com.br'}
+				,{name: 'C'	,email:'b@gmail.com'}
+				,{name: 'Z' ,email:'a@test.com'}
+			];
+			
+			vm.users.keyslength = Object.keys(vm.users[0]).length + 1; //+1 do botão DELETE...
+			
+			
+			vm.add = add;
+			function add(user){
+				vm.users.push(user);
+			}
+			
+			vm.ordenarBy = ordenarBy;
+			function ordenarBy(key){
+				vm.users = sortResults(vm.users, key, true);
+			}
+			
+			//Ex: fazer com splice
+			vm.remove = remove;
+			function remove(users){
+				
+				i = users.length; //Como o splice retira um número do indice precisa ser dinâmico.
+				while (i--) {
+					if(users[i].selecionado == true){
+						users.splice(i, 1);
+					}
+				}
+				vm.users = users;
+				
+				/*
+				//Ex do Suissa:
+				vm.users = vm.users.filter(function(el){
+					return !el.selecionado ;
+				});
+				*/
+				
+			}
+		}
+	</script>
+	
+</body>
+</html>

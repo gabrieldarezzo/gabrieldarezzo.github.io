@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+</head>
+<body data-ng-controller="UserController as User">
+	<h1>{{User.titulo}}</h1>
+	<label>Busca: <input type="text" data-ng-model="searchUser"/></label>
+	<span data-ng-init="predicate = 'name'; reverse = true; "></span>
+	<table>
+		<thead>
+			<tr>
+				<th data-ng-repeat="(key, value) in User.users[0]">{{key}}</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr data-ng-repeat="user in User.users | orderBy:predicate:reverse | filter:searchUser">
+				<td data-ng-repeat="(key, value) in user">{{value}}</td>
+			</tr>
+		</tbody>
+		
+	</table>
+	
+	<div data-ng-controller="CursoController as Curso">
+		<h1>{{User.titulo}}</h1>
+		<ul>
+			<li data-ng-repeat="curso in Curso.users">
+				{{curso.name}} - {{curso.teacher}}
+			</li>
+		</ul>
+	</div>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('BeMEAN', [])
+			.controller('UserController', UserController)
+			.controller('CursoController', CursoController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			vm.users = [
+				 {name: 'Gabriel'	,sobrenome: 'Darezzo',email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Kiko'		,sobrenome: 'Tesouro',email:'kiko@teste.com.br'}
+				,{name: 'Fran'		,sobrenome: 'Silva'  ,email:'fran@gmail.com'}
+			];
+		}
+		
+		function CursoController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Cursos";
+			vm.users = [
+				 {name: 'Fernanda'	,teacher:'fernada@ccaa.com.br'}
+				,{name: 'Renata'	,teacher:'renata@ccaa.com.br'}
+				,{name: 'Katia'		,teacher:'katia@ccaa.com.br'}
+			];
+		}
+	</script>
+	
+</body>
+</html>

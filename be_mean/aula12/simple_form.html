@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+	<link rel="stylesheet" href="../node_modules/materialize-css/css/materialize.min.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+
+	
+	<style type="text/css">
+		
+		.success{
+			background-color: #A4E567;
+		}
+		.danger{
+			background-color: #E56759;
+		}
+		.invalid{
+			background-color: red;
+		}
+		
+	</style>
+</head>
+<body data-ng-controller="UserController as User">
+	<section class="row wrapper">
+		<img src="../be_mean.png" alt="Be-Mean Logo" class="atom-logo" />
+		<div class="col s12">
+			<form name="userForm">
+				<div ng-class="{'invalid' : userForm.name.$invalid}">
+					<label>Name</label>
+					<input type="text" name="name" data-ng-model="user.name" placeholder="Nome" required />
+				</div>
+				<div>
+					<label>Email</label>
+					<input type="text" name="email" data-ng-model="user.email" placeholder="Email" required />
+				</div>
+			</form>
+		</div>
+		
+	</section>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript">
+		//Ordena um Objeto de acordo com a coluna selecionada
+		function sortResults(arr, prop, asc) {
+			var arr = arr.sort(function(a, b) {
+				if (asc) {
+					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+				} else {
+					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+				}
+			});
+			return arr;
+		}
+		
+		angular.module('BeMEAN', ['ngAnimate'])
+			.controller('UserController', UserController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			vm.tituloStyle = {
+				 "color" : "#D0BB00"
+				,"text-align" : "center"
+			};
+			vm.tituloClass = 'my-ng-class';
+			
+			
+			vm.editing = false;
+			
+			
+			vm.isColorRow = isColorRow;
+			function isColorRow(isSelected){
+				//console.log(vm.editing);
+				
+				if(isSelected){
+					return vm.tituloStyle = {
+						 "color" : "#D0BB00"
+						,"text-align" : "center"
+					};
+				} else {
+					return {};
+				}
+			}
+			
+			
+			/*
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Roberto'	,email:'robert@teste.com.br'}
+				,{name: 'Suissa'	,email:'susu@gmail.com'}
+				,{name: 'Zi'		,email:'ai@test.com'}
+			];
+			*/
+			vm.users = [
+				 {name: 'Suissa'	,email:'suissa@yahoo.com.br'	,type: 'teacher',active:true}
+				,{name: 'Gabriel'	,email:'gabriel@teste.com.br'	,type: 'student',active:false}
+				,{name: 'Darezzo'	,email:'darezzogmail.com'		,type: 'teacher',active:false}	
+				,{name: 'Roberto' 	,email:'roberto@test.com'		,type: 'student',active:true}
+				,{name: 'Fifi' 		,email:'fifi@globo.com'			,type: 'student',active:true}
+			];
+			
+			vm.add = add;
+			function add(user){
+				vm.users.push(user);
+				vm.form = {};
+			}
+			
+			vm.ordenarBy = ordenarBy;
+			function ordenarBy(key){
+				//console.log(key);
+				vm.users = sortResults(vm.users, key, true);
+			}
+			
+			//Ex: fazer com splice
+			vm.remove = remove;
+			function remove(users){
+				
+				i = users.length; //Como o splice retira um número do indice precisa ser dinâmico.
+				while (i--) {
+					if(users[i].selecionado == true){
+						users.splice(i, 1);
+					}
+				}
+				vm.users = users;
+				
+				/*
+				//Ex do Suissa:
+				vm.users = vm.users.filter(function(el){
+					return !el.selecionado ;
+				});
+				*/
+				
+			}
+			
+			vm.edit = edit;
+			function edit(user, i){
+				vm.form = angular.copy(user);
+				vm.form.index = i;
+				vm.editing = true;
+			}
+			
+			vm.save = save;
+			function save(user){
+				//console.log(user);
+				var users = vm.users.map(function(el, i){
+					if(i === user.index){
+						delete user.index;
+						return user;
+					}
+					return el;
+				});
+				vm.users = users;
+				vm.editing = false;
+				vm.form = {};
+			}
+		}
+	</script>
+	
+</body>
+</html>

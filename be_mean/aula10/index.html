@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+	<link rel="stylesheet" href="../node_modules/materialize-css/css/materialize.min.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+
+	
+	<style type="text/css">
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+			padding-bottom: 40px;
+		}
+		.animate{
+			transition: all linear 0.7s;
+		}
+		.ng-hide{
+			height: 0px;
+		}
+		.item.ng-enter{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-leave{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-move{
+			-webkit-transition:all linear 0.4s;
+			transition: linear 0.4s;
+		}
+		.item.ng-enter{
+			opacity: 0;
+		}
+		.item.ng-leave{
+			opacity: 1;
+		} 
+		.item.ng-move{
+			opacity: 0;
+		}
+		.item.ng-move.ng-move-active{
+			opacity: 1;
+		}
+		
+		.item.ng-leave.ng-leave-active{
+			opacity: 0;
+			height: 0px;
+		}
+		.item.ng-enter.ng-enter-active{
+			opacity: 1;
+		}
+		
+		.material-icons-45 {
+			-ms-transform:rotate(90deg);     /* Internet Explorer 9 */
+			-webkit-transform:rotate(90deg); /* Chrome, Safari, Opera */
+			transform:rotate(90deg);         /* Standard syntax */
+		}
+		
+		.re-order{
+			cursor:pointer;
+		}
+		
+		.my-ng-class{
+		    color: rgb(76, 175, 80) !important;
+		}
+		
+		.bold{
+			font-weight: bold;
+		}
+		
+		.strike{
+			font-weight: bold;
+			text-decoration: line-through;
+		}
+		.drop{
+			cursor:no-drop;
+		}
+		
+		.rr{
+			  font-family: "Times New Roman", Georgia, Serif;
+			  font-size: 13px;
+		}
+		
+		.odd{
+			background-color: #9E9E9E;
+		}
+		
+		
+	</style>
+</head>
+<body data-ng-controller="UserController as User">
+	<section class="row wrapper">
+		<h1 data-ng-style="User.tituloStyle" data-ng-class="my-ng-class">{{User.titulo}}</h1>
+		<hr />
+		<p class="col s12">
+			<label>Name:
+				<input type="text" data-ng-model="User.form.name" />
+			</label>
+			<br />
+			<label>Email:
+				<input type="text" data-ng-model="User.form.email" />
+			</label>
+		</p>
+		<button data-ng-click="User.add(User.form)" class="btn btn-large green waves-effect waves-light col s12" type="submit" name="action">Add</button>
+		<button data-ng-show="User.editing" data-ng-click="User.save(User.form)" class="btn btn-large blue waves-effect waves-light col s12" type="submit" name="action">Save</button>
+		
+		<!-- <span data-ng-init="predicate = 'name'; reverse = true; "></span> Não utilizo mais isto, função sortResults substitiu -->
+		<table>
+			<thead>
+				<tr>
+					<th colspan="4">
+						<label>
+							<input type="text" data-ng-model="searchUser" placeholder="Filtrar por Usúarios"/>
+						</label>
+					</th>
+				</tr>
+				<tr>
+					<th>#</th>
+					<th class="re-order" data-ng-click="User.ordenarBy('name')">
+						<i class="material-icons material-icons-45">compare_arrows</i> Name
+					</th>
+					<th class="re-order" data-ng-click="User.ordenarBy('email')">
+						<i class="material-icons material-icons-45">compare_arrows</i> Email
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr data-ng-style="User.isColorRow(user.selecionado)" data-ng-class-odd="'odd'" data-ng-class="{bold: !user.selecionado, strike: user.selecionado, drop: user.selecionado, rr: user.selecionado}" data-ng-repeat="user in User.users | filter:searchUser " class="item">
+					<td>
+						<input type="checkbox" id="user-{{$index}}" ng-model="user.selecionado" />
+						<label for="user-{{$index}}"></label>
+					</td>
+					<td>{{user.name}}</td>
+					<td>{{user.email}}</td>
+					<td>
+						<button data-ng-click="User.edit(user, $index)" class="btn btn-large blue waves-effect waves-light col s12" >Edit</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button data-ng-click="User.remove(User.users)" class="btn btn-large red waves-effect waves-light col s12" >DELETE</button>
+	</section>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript">
+	
+		/*
+		var myarr = [1,2,3,4];
+		var b = myarr.slice(); //Copy of array
+		myarr.splice(2, 1); //remove o 3....
+		
+		console.log(myarr);
+		console.log(b);
+		*/
+		
+		/*
+		for(x in myarr){
+			if(myarr[x] == 3 || myarr[x] == 2){
+				c_myarr.splice(x, 1);
+			}
+		}
+		console.log(c_myarr);
+		*/
+	
+		//Ordena um Objeto de acordo com a coluna selecionada
+		function sortResults(arr, prop, asc) {
+			var arr = arr.sort(function(a, b) {
+				if (asc) {
+					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+				} else {
+					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+				}
+			});
+			return arr;
+		}
+		
+		angular.module('BeMEAN', ['ngAnimate'])
+			.controller('UserController', UserController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			vm.tituloStyle = {
+				 "color" : "#D0BB00"
+				,"text-align" : "center"
+			};
+			vm.tituloClass = 'my-ng-class';
+			
+			
+			vm.editing = false;
+			
+			
+			vm.isColorRow = isColorRow;
+			function isColorRow(isSelected){
+				//console.log(vm.editing);
+				
+				if(isSelected){
+					return vm.tituloStyle = {
+						 "color" : "#D0BB00"
+						,"text-align" : "center"
+					};
+				} else {
+					return {};
+				}
+			}
+			
+			
+			/*
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Roberto'	,email:'robert@teste.com.br'}
+				,{name: 'Suissa'	,email:'susu@gmail.com'}
+				,{name: 'Zi'		,email:'ai@test.com'}
+			];
+			*/
+			vm.users = [
+				 {name: 'A'	,email:'z@yahoo.com.br'}
+				,{name: 'B'	,email:'c@teste.com.br'}
+				,{name: 'C'	,email:'bgmail.com'}
+				,{name: 'Z' ,email:'atest.com'}
+			];
+			
+			vm.add = add;
+			function add(user){
+				vm.users.push(user);
+				vm.form = {};
+			}
+			
+			vm.ordenarBy = ordenarBy;
+			function ordenarBy(key){
+				//console.log(key);
+				vm.users = sortResults(vm.users, key, true);
+			}
+			
+			//Ex: fazer com splice
+			vm.remove = remove;
+			function remove(users){
+				
+				i = users.length; //Como o splice retira um número do indice precisa ser dinâmico.
+				while (i--) {
+					if(users[i].selecionado == true){
+						users.splice(i, 1);
+					}
+				}
+				vm.users = users;
+				
+				/*
+				//Ex do Suissa:
+				vm.users = vm.users.filter(function(el){
+					return !el.selecionado ;
+				});
+				*/
+				
+			}
+			
+			vm.edit = edit;
+			function edit(user, i){
+				vm.form = angular.copy(user);
+				vm.form.index = i;
+				vm.editing = true;
+			}
+			
+			vm.save = save;
+			function save(user){
+				//console.log(user);
+				var users = vm.users.map(function(el, i){
+					if(i === user.index){
+						delete user.index;
+						return user;
+					}
+					return el;
+				});
+				vm.users = users;
+				vm.editing = false;
+				vm.form = {};
+			}
+		}
+	</script>
+	
+</body>
+</html>
