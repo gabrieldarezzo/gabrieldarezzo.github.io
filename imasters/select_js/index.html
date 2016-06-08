@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+	
+	<select name="linguagem" id="select-id"></select>
+	
+	<script type="text/javascript">
+		ajax = new XMLHttpRequest();
+		ajax.open('GET', 'ex.php', true);
+		ajax.send();
+		
+		ajax.onreadystatechange = function() {
+			if(ajax.readyState == 4 && ajax.status == 200) {
+				var option;
+				var sel = document.getElementById('select-id');
+				
+				//Transforma um texto simples em um Objeto  (IE 8+)
+				var json = JSON.parse(ajax.responseText);
+				
+				
+				//Definimos o Option.
+				
+				
+				//Executa um Loop dentro do retorno JSON
+				for(x in json){
+					 option = document.createElement("option");
+					//Para exibir cada interação você pode fazer algo como:
+					//console.log(json.x), o x vai aumentando.... e assim passando e cada elemento do JSON
+					option.text = json[x].nome;
+					option.value = json[x].id;
+					sel.add(option);
+				}
+			}
+		}
+	
+	
+	</script>
+</body>
+</html>

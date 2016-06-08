@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+	
+	<select name="linguagem" id="select-id">
+		<option value="1">PHP</option>
+		<option value="2">JavaScript</option>
+		<option value="3">C</option>
+		<option value="4">C++</option>
+	</select>
+	
+	<script type="text/javascript">
+		var selecionado = '2'; //Vem do Banco... (Exemplo abaixo de como criar variavel JS pelo PHP ...)
+		var options = document.getElementById('select-id').getElementsByTagName('option');
+		for(x in options){
+			if(options[x].value == selecionado){
+				options[x].selected = 'selected';
+			}
+		}
+	</script>
+	
+	
+</body>
+</html>

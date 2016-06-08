@@ -1,0 +1,212 @@
+/*FONTS*/
+@font-face{
+	font-family: 'NixieOne';
+	src: url('../fonts/nixieone-regular-webfont.eot');
+	src: url('../fonts/nixieone-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('../fonts/nixieone-regular-webfont.svg') format('svg'),
+			url('../fonts/nixieone-regular-webfont.ttf') format('truetype'),
+			url('../fonts/nixieone-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Lato';
+	src: url('../fonts/lato-regular-webfont.eot');
+	src: url('../fonts/lato-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('../fonts/lato-regular-webfont.ttf') format('truetype'),
+			url('../fonts/lato-regular-webfont.svg') format('svg'),
+			url('../fonts/lato-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/*SITE BODY*/
+body{background-color: #077054;}
+
+a{
+	text-decoration:none;
+	margin: 0;
+	padding: 0;
+}
+
+li{list-style-type: none;}
+
+h1, h2{
+	margin: 0;
+	padding: 0;
+}
+/*INTERFACE SECTION*/
+section#interface{/*Define largura e centraliza a interface (header, content e footer)*/
+	width: 960px;
+	margin: auto;
+}
+
+/*HEADER*/
+#principal{/*Centraliza textos e tira margens*/
+	text-align: center;
+	margin: 0;
+}
+
+#principal hgroup{/*Centraliza todos os títulos, em relação a seus próprios containers (horizon x verti)*/
+	padding: 25px 45px 30px 45px;	
+}
+
+#principal hgroup h1 a{/*Define estilos para os títulos, removendo os estilos padrões da tag <a>*/
+	font-family: 'Lato';
+	font-size: 50px;
+	line-height: 50px;
+	color: #99fa99;
+}
+
+#principal hgroup h2 a{/*Mesma regras, que o seletor anterior*/
+	font-family: 'NixieOne';
+	font-size: 26px;
+	line-height: 50px;
+	color: #b6d8cf;
+}
+
+#principal nav ul li{/*Dispõe listas em linhas, com largura definida*/
+	background-color: #077054;
+	display: inline-block;
+	width: 153px;
+	margin: 0;
+}
+
+#principal nav ul li{/*Posiciona as listas do menu*/
+	position: relative;
+}
+
+#principal nav ul li ul li{/*Esconde todos sub-menus e formata estilos*/
+	display: none;
+	left: 0;
+	list-style: none;
+	margin: 0;
+	padding: 11px 0 5px 0;
+	position: absolute;
+	top: 30px;
+}
+
+#principal nav ul li:hover ul li{/*Mostra o sub-menu, quando passa o mouse sobre as <li> que possuem outras listas*/
+	display: block;
+}
+
+#principal ul a{/*Formata estilo de todos os links, ou seja, todos os itens do menu*/
+	margin: 0;
+	padding: 0;
+	font-family: 'Lato', serif;
+	font-size: 18px;
+	line-height: 30px;
+	color: #b6d8cf;
+}
+
+#principal ul a#home{/*Atribui cor diferente ao ítem de menu, atual (Se tivesse "a#classes" este ítem teria cor diferente)*/
+	color: #99fa99;	
+}
+
+/*CONTENT INTRO*/
+Section.intro{/*Define o espaço para uma introdução, sobre o site*/
+	background-color: white;
+	padding:120px 80px 65px 65px;
+}
+.intro hgroup{/*Define largura e flutuação à esquerda, para o grupo de títulos*/
+	width: 510px;
+	float: left; 
+}
+
+.intro hgroup h1{/*Formata estilos, impõe background e alinhamento de texto, no centro*/
+	background: url(../images/bg-separator.png) no-repeat center bottom;
+	color: #21a51e;
+	font-family: 'NixieOne';
+	font-size: 100px;
+	font-weight: normal;
+	line-height: 100px;
+	margin: 0;
+	padding: 0 0 55px;
+	text-align: center;
+}
+
+.intro hgroup h2{/*Mesmas regras do seletor anterior, porém, aplicadas ao título de segunda hierarquia*/
+	color: #21a51e;
+	font-family: 'NixieOne';
+	font-size: 90px;
+	line-height: 100px;
+	padding: 43px 0 0;
+	text-align: center;
+	margin: 0;
+}
+
+/*Footer*/
+footer{/*Define moldura externa e interna*/
+	margin: 0;
+	padding: 30px 0 60px 0;
+}
+
+footer address{/*Formata estilos do texto de endereço e modura externa*/
+	font-style: normal;
+	font-family: 'Lato';
+	font-size: 26px;
+	line-height: 14px;
+	color: #99fa99;
+	margin: 0;
+}
+
+footer p{/*Formata estilo do texto de copyright e modura externa*/
+	font-family: 'Lato';
+	font-size: 12px;
+	line-height: 30px;
+	color: #b6d8cf;
+	margin: 0;
+}
+
+footer div#address-copy{/*Dispõe a divisória em flutuação à esquerda, em bloco*/
+	display: block;
+	float: left;
+	margin: 0;
+}
+
+footer a#facebook{/*Formata tamanho, background e moldura externa de uma das redes sociais*/
+	background: url(../images/icon-facebook.png) no-repeat;
+	display: block;
+	width: 16px;
+	height: 30px;
+	margin: 0 20px 0 0;
+	float: left;
+}
+
+footer a#twitter{/*Formata tamanho, background e moldura externa de uma das redes sociais*/
+	background: url(../images/icon-twitter.png) no-repeat;
+	display: block;
+	width: 37px;
+	height: 30px;
+	margin: 0 20px 0 0;
+	float: left;
+}
+
+footer a#googleplus{/*Formata tamanho, background e moldura externa de uma das redes sociais*/
+	background: url(../images/icon-googleplus.png) no-repeat;
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin: 0 20px 0 0;
+	float: left;
+}
+
+footer a#pinterest{/*Formata tamanho, background e moldura externa de uma das redes sociais*/
+	background: url(../images/icon-pinterest.png) no-repeat;
+	display: block;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	float: left;
+}
+
+footer ul{/*Faz lista de redes sociais flutuarem à esquerda, com margem externa neutra*/
+	float: right;
+	margin: 0;
+}
+
+footer li{/*Dispõe a lista de redes sociais, em linha*/
+	display: inline;
+	margin: 0;
+}
+ 
