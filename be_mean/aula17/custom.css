@@ -1,0 +1,96 @@
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+			padding-bottom: 40px;
+		}
+		.animate{
+			transition: all linear 0.7s;
+		}
+		.ng-hide{
+			height: 0px;
+		}
+		.item.ng-enter{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-leave{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-move{
+			-webkit-transition:all linear 0.4s;
+			transition: linear 0.4s;
+		}
+		.item.ng-enter{
+			opacity: 0;
+		}
+		.item.ng-leave{
+			opacity: 1;
+		} 
+		.item.ng-move{
+			opacity: 0;
+		}
+		.item.ng-move.ng-move-active{
+			opacity: 1;
+		}
+		
+		.item.ng-leave.ng-leave-active{
+			opacity: 0;
+			height: 0px;
+		}
+		.item.ng-enter.ng-enter-active{
+			opacity: 1;
+		}
+		
+				
+		.atom-logo{
+			display: block;
+			margin: 0 auto;
+			width: 400px;
+			padding-bottom: 15px;
+		}
+		
+		.my-ng-class{
+		    color: rgb(76, 175, 80) !important;
+		}
+		
+		.bold{
+			font-weight: bold;
+		}
+		
+		.strike{
+			font-weight: bold;
+			text-decoration: line-through;
+		}
+		.drop{
+			cursor:no-drop;
+		}
+		
+		.rr{
+			  font-family: "Times New Roman", Georgia, Serif;
+			  font-size: 13px;
+		}
+		
+		.odd{
+			background-color: #9E9E9E;
+		}
+		
+		html body select{
+			display: inline-block;
+		}
+		
+		[disabled]{
+			background-color: #ccc !important;
+		}
+		.ng-valid{
+			background-color: #B4E5C4;
+		}
+		.dirty{
+			background-color: #ccc;
+		}
+		.invalid{
+			background-color: red;
+		}
+		/*Remove autocomplete do Chrome*/
+		input:-webkit-autofill
+		

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+</head>
+<body data-ng-controller="UserController as User">
+	<h1>{{User.titulo}}</h1>
+	<label>Busca: <input type="text" data-ng-model="searchUser"/></label>
+	<p>
+		<label>Name:
+			<input type="text" data-ng-model="form.User.name" />
+		</label>
+		<br />
+		<label>Email:
+			<input type="text" data-ng-model="form.User.email" />
+		</label>
+	</p>
+	
+	<button data-ng-click="User.add(form.User)">ADD USER</button>
+	<span data-ng-init="predicate = 'name'; reverse = true; "></span>
+	<table>
+		<thead>
+			<tr>
+				<th data-ng-click="User.ordenarBy(key)" data-ng-repeat="(key, value) in User.users[0]">{{key}}</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr data-ng-repeat="user in User.users | filter:searchUser track by $index ">
+				<td data-ng-repeat="(key, value) in user" style="text-align: center;">{{value}}</td>
+			</tr>
+		</tbody>
+		
+	</table>
+	
+
+	
+	<script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		/*
+			1) Adicionar mais 1 campo em todos os Controllers e utilizar ele em orderBy.
+			2) Utilizar esse valor adicional no ng-init para cada ng-repeat da View.
+			3) Criar um campo de filtro para cada ng-repeat.
+		*/
+	
+		
+		//Ordena um Objeto de acordo com a coluna selecionada
+		function sortResults(arr, prop, asc) {
+			var arr = arr.sort(function(a, b) {
+				if (asc) {
+					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+				} else {
+					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+				}
+			});
+			return arr;
+		}
+		
+		
+		
+		
+	
+	
+		angular.module('BeMEAN', [])
+			.controller('UserController', UserController)
+			.controller('CursoController', CursoController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			/*
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Roberto'	,email:'robert@teste.com.br'}
+				,{name: 'Suissa'	,email:'susu@gmail.com'}
+				,{name: 'Zi'		,email:'ai@test.com'}
+			];
+			*/
+			
+			vm.users = [
+				 {name: 'A'	,email:'z@yahoo.com.br'	, sala: '3-A'}
+				,{name: 'B'	,email:'c@teste.com.br'	, sala: '3-B'}
+				,{name: 'C'	,email:'b@gmail.com'	, sala: '3-C'}
+				,{name: 'Z' ,email:'a@test.com'		, sala: '3-D'}
+			];
+			
+			vm.add = add;
+			function add(user){
+				vm.users.push(user);
+			}
+			
+			vm.ordenarBy = ordenarBy;
+			function ordenarBy(key){
+				vm.users = sortResults(vm.users, key, true);
+				//console.log('Ordenando por:',key ,vm.users);
+			}
+		}
+		
+		function CursoController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Cursos";
+			vm.users = [
+				 {name: 'PHP With Angular'	,teacher:'Darezzo'}
+				,{name: 'Boa Praticas Js'	,teacher:'WBruno'}
+				,{name: 'Be MEAN'			,teacher:'Suissa'}
+			];
+
+			vm.add = add;
+			function add(user){
+				vm.users.push({name:'Curso Exemplo', teacher: 'Prof Exemplo'});
+			}
+			
+		}
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+</head>
+<body data-ng-controller="UserController as User">
+	
+	<h1>{{User.titulo}}</h1>
+	<ul>
+		<li data-ng-repeat="user in User.users">
+			{{user.name}} - {{user.email}}
+		</li>
+	</ul>
+	
+	<div data-ng-controller="CursoController as Curso">
+		<h1>{{User.titulo}}</h1>
+		<ul>
+			<li data-ng-repeat="curso in Curso.users">
+				{{curso.name}} - {{curso.teacher}}
+			</li>
+		</ul>
+	</div>
+	
+	<div data-ng-controller="ProfessorController as Professor">
+		<h1>{{Professor.titulo}}</h1>
+		<p>Filtro por Turma</p>
+		<input type="text" data-ng-model="search"/>
+		<ul>
+			<li data-ng-repeat="professor in Professor.users | filter: search">
+				({{professor.turma}}) - {{professor.name}} -> <strong>{{professor.materia}}</strong>
+			</li>
+		</ul>
+	</div>
+	
+	
+	<script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('BeMEAN', [])
+			.controller('UserController', UserController)
+			.controller('CursoController', CursoController)
+			.controller('ProfessorController', ProfessorController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'João'		,email:'joao@teste.com.br'}
+				,{name: 'Fran'		,email:'fran@gmail.com'}
+			];
+		}
+		
+		function CursoController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Cursos";
+			vm.users = [
+				 {name: 'Fernanda'	,teacher:'fernada@ccaa.com.br'}
+				,{name: 'Renata'	,teacher:'renata@ccaa.com.br'}
+				,{name: 'Katia'		,teacher:'katia@ccaa.com.br'}
+			];
+		}
+		
+		function ProfessorController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Professores";
+			vm.users = [
+				 {name: 'Vasco'				,turma:'3B', materia: 'Biologia'}
+				,{name: 'Rita de Cassia'	,turma:'3C', materia: 'Historia'}
+				,{name: 'Renato'			,turma:'3A', materia: 'Historia c/ Dorgas'}
+			];
+		}
+		
+	</script>
+	
+</body>
+</html>

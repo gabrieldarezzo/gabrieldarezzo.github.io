@@ -1,0 +1,134 @@
+<!doctype hTML>
+<html lang="en" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>BE Mean</title>
+</head>
+<body>
+	
+	<h3>Informe sua idade (números - ex: 19)</h3>
+	<label for="idade">
+		<input type="text" data-ng-model="idade" />
+	</label>
+	<br />
+	{{idade | ismaior}}
+	
+	
+	<h3>Informe sua data de Nascimento (Ex: <a title="Hateen - 1997" target="_new" href="https://www.youtube.com/watch?v=9El8tJ-pTRU">1997</a> - Filter chama Filter (It's WORK!11!))</h3>
+	<label for="nasc">
+		<input type="text" data-ng-model="nasc" />
+	</label>
+	<br />
+	{{nasc | isMaiorByNasc}}
+	
+	
+	<h3>Informe uma hora (Ex: '11:00', '17:30', '19:21')</h3>
+	<label for="hora">
+		<input type="text" data-ng-model="hora" />
+	</label>
+	<br />
+	{{hora | greetingByHour}}
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+	    
+	<script type="text/javascript">
+		/*
+			Crie 1 exemplo para pelo menos 5 filtros padrões do Angular
+			Crie 1 filtro novo onde você passe em um input a sua idade e ele diga se você é maior ou menor que 18 anos.
+			Crie 1 filtro que receba um horário, entre 0:00 e 23:59, e diga:
+			* Bom dia. // até 12:00
+			* Boa tarde. // até 18:00
+			* Boa noite.
+			(Dependendo do horário.)
+		*/
+	
+		angular.module('BeMEAN', [])
+		//1
+		.filter('datehue', function() {
+			return function(input) {
+				if (input == null) return '';
+				
+				
+				if (input == 'true'){
+					return 'true';
+				} else {
+					return '';
+				}
+			};
+		})
+		//2
+		.filter('islastname', function() {
+			return function(input) {
+				// Evita erro...
+				if (input == null) return '';
+				
+				if((input.indexOf(' ') > -1)){
+					return 'Nome + Sobrenome';
+				}
+				return 'Nome';
+			};
+		})
+		//3
+		.filter('ismaior', function() {
+			return function(input) {
+				// Evita erro...
+				if (input == null) return '';
+				
+				if(parseInt(input) >= 18){
+					return 'Maior';
+				}
+				return 'Menor';
+			};
+		})
+		//4
+		.filter('isMaiorByNasc', function($filter) {
+			return function(input) {
+				// Evita erro...
+				if (input == null) return '';
+				
+				var dt = new Date();
+				var ano_atual = dt.getFullYear();
+				
+				var idade = ano_atual - parseInt(input);
+				
+				return us_currency = $filter('ismaior')(idade);
+			};
+		})
+		//5
+		
+		/**
+		*@ hora
+		*@return (String)
+		*	Bom dia. // até 12:00
+		*	Boa tarde. // até 18:00
+		*	Boa noite.
+		*/
+		.filter('greetingByHour', function() {
+			return function(input) {
+				// Evita erro...
+				if (input == null) return '';
+				
+				if((input.indexOf(':') > -1)){
+					var x = input.split(':');
+					var hr = parseInt(x[0]);
+					if(hr <= 12){
+						return 'Bom dia.';
+					} else if(hr <= 18){ //Uiaaa é diferente o else if kkk 
+						return 'Boa tarde.';
+					} else {
+						return 'Boa noite.';
+					}
+				}
+				
+			};
+		})
+		;
+	</script>
+	
+</body>
+</html>

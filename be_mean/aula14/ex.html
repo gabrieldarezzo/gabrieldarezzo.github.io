@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt_BR" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN</title>
+	<link rel="stylesheet" href="../node_modules/materialize-css/css/materialize.min.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+
+	
+	<style type="text/css">
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+			padding-bottom: 40px;
+		}
+		.animate{
+			transition: all linear 0.7s;
+		}
+		.ng-hide{
+			height: 0px;
+		}
+		.item.ng-enter{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-leave{
+			-webkit-transition:all linear 0.7s;
+			transition: linear 0.7s;
+		}
+		.item.ng-move{
+			-webkit-transition:all linear 0.4s;
+			transition: linear 0.4s;
+		}
+		.item.ng-enter{
+			opacity: 0;
+		}
+		.item.ng-leave{
+			opacity: 1;
+		} 
+		.item.ng-move{
+			opacity: 0;
+		}
+		.item.ng-move.ng-move-active{
+			opacity: 1;
+		}
+		
+		.item.ng-leave.ng-leave-active{
+			opacity: 0;
+			height: 0px;
+		}
+		.item.ng-enter.ng-enter-active{
+			opacity: 1;
+		}
+		
+				
+		.atom-logo{
+			display: block;
+			margin: 0 auto;
+			width: 400px;
+			padding-bottom: 15px;
+		}
+		
+		.my-ng-class{
+		    color: rgb(76, 175, 80) !important;
+		}
+		
+		.bold{
+			font-weight: bold;
+		}
+		
+		.strike{
+			font-weight: bold;
+			text-decoration: line-through;
+		}
+		.drop{
+			cursor:no-drop;
+		}
+		
+		.rr{
+			  font-family: "Times New Roman", Georgia, Serif;
+			  font-size: 13px;
+		}
+		
+		.odd{
+			background-color: #9E9E9E;
+		}
+		
+		html body select{
+			display: inline-block;
+		}
+		
+		[disabled]{
+			background-color: #ccc !important;
+		}
+		.ng-valid{
+			background-color: #B4E5C4;
+		}
+		.dirty{
+			background-color: #ccc;
+		}
+		.invalid{
+			background-color: red;
+		}
+		/*Remove autocomplete do Chrome*/
+		input:-webkit-autofill
+		
+	</style>
+</head>
+<body data-ng-controller="UserController as User">
+	<section class="row wrapper">
+		<img class="atom-logo" src="../be_mean.png" alt="Logo Be MEAN"/>
+		
+		<form name="searchForm" data-ng-submit="User.submitForm(User.form)" novalidate autocomplete="off">
+			<div>
+				<input type="text" name="name" ng-model-options="{ updateOn: 'default mouseout',debounce: { default:3000, mouseout: 0}}" data-ng-model="search" placeholder="Busca"/>
+			</div>
+		</form>
+		
+		<article>
+			<p>
+				Busca: {{search}}
+			</p>
+		</article>
+		
+	</section>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-messages/angular-messages.min.js"></script>
+	<script type="text/javascript">
+	
+		/*
+		var myarr = [1,2,3,4];
+		var b = myarr.slice(); //Copy of array
+		myarr.splice(2, 1); //remove o 3....
+		
+		console.log(myarr);
+		console.log(b);
+		*/
+		
+		/*
+		for(x in myarr){
+			if(myarr[x] == 3 || myarr[x] == 2){
+				c_myarr.splice(x, 1);
+			}
+		}
+		console.log(c_myarr);
+		*/
+	
+		//Ordena um Objeto de acordo com a coluna selecionada
+		function sortResults(arr, prop, asc) {
+			var arr = arr.sort(function(a, b) {
+				if (asc) {
+					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+				} else {
+					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+				}
+			});
+			return arr;
+		}
+		
+		angular.module('BeMEAN', ['ngAnimate', 'ngMessages'])
+			.controller('UserController', UserController)
+		;
+			
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Be Mean - Usuários";
+			vm.tituloStyle = {
+				 "color" : "#D0BB00"
+				,"text-align" : "center"
+			};
+			vm.tituloClass = 'my-ng-class';
+			
+			
+			vm.editing = false;
+			
+			
+			vm.isColorRow = isColorRow;
+			function isColorRow(isSelected){
+				//console.log(vm.editing);
+				
+				if(isSelected){
+					return vm.tituloStyle = {
+						 "color" : "#D0BB00"
+						,"text-align" : "center"
+					};
+				} else {
+					return {};
+				}
+			}
+			
+			
+			/*
+			vm.users = [
+				 {name: 'Gabriel'	,email:'gabrieldarezzo@yahoo.com.br'}
+				,{name: 'Roberto'	,email:'robert@teste.com.br'}
+				,{name: 'Suissa'	,email:'susu@gmail.com'}
+				,{name: 'Zi'		,email:'ai@test.com'}
+			];
+			*/
+			vm.users = [
+				 {name: 'Suissa'	,email:'suissa@yahoo.com.br'	,type: 'teacher',active:true}
+				,{name: 'Gabriel'	,email:'gabriel@teste.com.br'	,type: 'student',active:false}
+				,{name: 'Darezzo'	,email:'darezzogmail.com'		,type: 'teacher',active:false}	
+				,{name: 'Roberto' 	,email:'roberto@test.com'		,type: 'student',active:true}
+				,{name: 'Fifi' 		,email:'fifi@globo.com'			,type: 'student',active:true}
+			];
+			
+			vm.add = add;
+			function add(user){
+				vm.users.push(user);
+				vm.form = {};
+			}
+			
+			
+			//Desabilitado
+			//vm.ordenarBy = ordenarBy;
+			//function ordenarBy(key){
+				////console.log(key);
+				//vm.users = sortResults(vm.users, key, true);
+			//}
+			
+			
+			//Ex: fazer com splice
+			vm.remove = remove;
+			function remove(users){
+				
+				i = users.length; //Como o splice retira um número do indice precisa ser dinâmico.
+				while (i--) {
+					if(users[i].selecionado == true){
+						users.splice(i, 1);
+					}
+				}
+				vm.users = users;
+				
+				/*
+				//Ex do Suissa:
+				vm.users = vm.users.filter(function(el){
+					return !el.selecionado ;
+				});
+				*/
+				
+			}
+			
+			vm.edit = edit;
+			function edit(user, i){
+				vm.form = angular.copy(user);
+				vm.form.index = i;
+				vm.editing = true;
+			}
+			
+			vm.save = save;
+			function save(user){
+				//console.log(user);
+				var users = vm.users.map(function(el, i){
+					if(i === user.index){
+						delete user.index;
+						return user;
+					}
+					return el;
+				});
+				vm.users = users;
+				vm.editing = false;
+				vm.form = {};
+			}
+			
+			
+				
+			vm.submitForm = submitForm;
+			function submitForm(user){
+				if(!user)return false;
+				
+				if(user.name = ''){
+					return false;
+				}
+				
+				//Validação de E-mail
+				if(user.email = ''){
+					return false;
+				}
+				
+				add(user);
+			}
+			
+			
+			
+		}
+	</script>
+	
+</body>
+</html>

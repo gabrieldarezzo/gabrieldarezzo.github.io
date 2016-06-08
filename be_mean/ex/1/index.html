@@ -1,0 +1,62 @@
+<!doctype hTML>
+<html lang="en" data-ng-app="BeMEAN">
+<head>
+	<meta charset="UTF-8">
+	<title>BE Mean</title>
+</head>
+<body>
+	
+	<h3>escreva 'true'</h3>
+	<label for="bool">
+		<input type="text" data-ng-model="bool" />
+	</label>
+	<br />
+	Qnd escrever 'true'.... aparece -> : {{bool | datehue}}
+	
+	<h3>Informe seu Nome ou 'Nome e Sobrenome'</h3>
+	<label for="name_full">
+		<input type="text" data-ng-model="name_full" data-ng-init="name_full='Gabriel Darezzo'"/>
+	</label>
+	<br />
+	{{name_full | islastname}}
+	
+	
+	<br />
+	<h4></h4>
+	Uma TimeStamp ('2009-04-20T05:34:33Z') Formatada: {{"2009-04-20T05:34:33Z" | date : "d/M/yyyy" : timezone}}
+	<br />
+	
+	<script type="text/javascript" src="../../node_modules/angular/angular.min.js"></script>
+	    
+	<script type="text/javascript">
+		angular.module('BeMEAN', [])
+		.filter('datehue', function() {
+			return function(input) {
+				if (input == null) return '';
+				
+				
+				if (input == 'true'){
+					return 'true';
+				} else {
+					return '';
+				}
+			};
+		})
+		.filter('islastname', function() {
+			return function(input) {
+				// Evita erro...
+				if (input == null) return '';
+				
+				if((input.indexOf(' ') > -1)){
+					return 'Nome + Sobrenome';
+				}
+				return 'Nome';
+			};
+		})
+		
+		
+		;
+	</script>
+	
+</body>
+</html>

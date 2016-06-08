@@ -1,0 +1,16 @@
+#Como estou utilizando apache no windows, é interessante manter este .htaccess
+#Pois caso ocorra um re-fresh durante uma rota existe ex: '/be_mean/aula17/users/github/suissa' não ocorre um 404
+#Dica retirada do stack -> http://stackoverflow.com/questions/16569841/reloading-the-page-gives-wrong-get-request-with-angularjs-html5-mode/16570533#16570533
+
+
+## OBS: não esqueça da meta dentro do index.html: <base href="/be_mean/aula17/" />   ##
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /be_mean/aula17/
+	RewriteEngine On 
+	Options FollowSymLinks
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ /be_mean/aula17/#/$1 [L]
+</IfModule>
