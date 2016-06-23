@@ -29,3 +29,19 @@ http://gabrieldarezzo.github.io/be_mean/aula10/
 http://gabrieldarezzo.github.io/be_mean/aula11/  
 
 http://gabrieldarezzo.github.io/be_mean/aula12/  
+
+http://gabrieldarezzo.github.io/be_mean/aula13/  
+
+http://gabrieldarezzo.github.io/be_mean/aula14/  
+
+http://gabrieldarezzo.github.io/be_mean/aula15/  
+
+http://gabrieldarezzo.github.io/be_mean/aula16/  
+
+http://gabrieldarezzo.github.io/be_mean/aula17/  
+
+http://gabrieldarezzo.github.io/be_mean/aula18/  
+
+http://gabrieldarezzo.github.io/be_mean/aula19/  
+
+
