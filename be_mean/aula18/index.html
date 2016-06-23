@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt_br" data-ng-app="BeMEAN">
+<head>
+	<base href="/be_mean/aula18/" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>Be MEAN</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../node_modules/materialize-css/css/materialize.min.css" />
+	<link href="custom.css" rel="stylesheet">
+	
+</head>
+<body>
+	<section class="row wrapper">
+		<img src="../be_mean.png" alt="Be-Mean Logo" class="atom-logo" />
+		<h1>Be MEAN - EAD</h1>
+		<ul class="menu">
+			
+			<li>
+				<a ng-href="users">Listar</a>
+			</li>
+			<li>
+				<a ng-href="users/create">Cadastrar</a>
+			</li>
+			<li>
+				<a ng-href="users/github">GitHub</a>
+			</li>
+		</ul>
+		
+		<div data-ng-view></div>
+	</section>
+	
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="controllers/user.js"></script>
+</body>
+</html>

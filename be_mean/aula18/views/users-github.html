@@ -1,0 +1,24 @@
+<h2>Dados do usuário do Github</h2>
+<p class="card-panel">
+	
+	<img src="{{UserGithub.user.avatar_url}}" alt="{{'@' + UserGithub.user.login + ' Photo'}}" />
+	<br />
+	Nome:{{UserGithub.user.name}} / {{"@" + UserGithub.user.login}}
+	<br />
+	Membro desde: {{UserGithub.user.created_at}}
+	<br />
+	Email: {{UserGithub.user.email}}
+	<br />
+	Home: <a target="_new" ng-href="{{UserGithub.user.html_url}}">{{UserGithub.user.html_url}}</a>
+	<br />
+	Followers: <strong>{{UserGithub.user.followers}}</strong>
+	<br />
+	Blog: <a target="_new" ng-href="{{UserGithub.user.blog}}">{{UserGithub.user.blog}}</a>
+	<br />
+	E-mail: <a target="_new" ng-href="mailto:{{UserGithub.user.email}}">{{UserGithub.user.email}}</a>
+	
+	
+	
+	
+	
+</p>
