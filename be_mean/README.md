@@ -5,6 +5,11 @@
 Aprendizados do curso BeMEAN módulo AngularJs https://github.com/Webschool-io (AngularJs1)
 
 
+Ps: Não utilizei o REST do Node por falta de conhecimento ensta tecnologia, então fiz um 'REST' pelo PHP + Slim Framework:
+https://github.com/gabrieldarezzo/be_mean/tree/master/api
+
+
+
 ##Veja os exemplos:  
 http://gabrieldarezzo.github.io/be_mean/aula1/  
 
