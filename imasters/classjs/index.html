@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+	<div id="blocos">
+		<h3 class="itens">Item 1</h3>
+		<h3 class="itens">Item 2</h3>
+		<h3 class="itens">Item 3</h3>
+		<h3 class="itens">Item 4</h3>
+	</div>
+	
+	<script type="text/javascript">
+		var classname = document.getElementsByClassName("itens");
+		
+		for (var i = 0; i < classname.length; i++) {
+			classname[i].addEventListener('click', function() {
+				
+				this.style = 'background-color: #8a7b7b;';
+			});
+		}
+	</script>
+</body>
+</html>

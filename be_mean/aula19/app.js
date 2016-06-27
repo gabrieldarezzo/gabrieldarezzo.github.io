@@ -9,3 +9,5 @@ angular.module('BeMEAN', ['ngAnimate', 'ngRoute', 'User'])
 		.otherwise({redirectTo: '/'});
 	}])
 ;
+
+
