@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html lang="pt_BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Jogo da Velha</title>
+	<link href="fav_32.png" rel="shortcut icon"/>
+	<style type="text/css">
+		#tabuleiro{
+			width: 600px;
+			height: 600px;
+		}
+		.cell-odd{
+			width: 200px;
+			height: 200px;
+			background-color: #000;
+			float:left;
+		}
+		.cell-even{
+			width: 200px;
+			height: 200px;
+			background-color: #ccc;
+			float:left;
+		}
+		
+		.circle{
+			width: 80%;
+			height: 80%;
+			margin: 0 auto;
+			margin-top: 20px;
+			background: #FFF;
+			-moz-border-radius: 50px;
+			-webkit-border-radius: 50px;
+			border-radius: 100%;
+		}
+		
+		.cross {
+			height: 100%;
+			width: 100%;
+			border-radius: 5px;
+			position: relative;
+		}
+
+		.cross:after {
+			position: absolute;
+			top: 55px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			content: "\274c";
+			font-size: 150px;
+			color: #FFF;
+			line-height: 100px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+<div id="tabuleiro">
+	<div data-cell="0,0" class="cell cell-odd"></div>
+	<div data-cell="0,1" class="cell cell-even"></div>
+	<div data-cell="0,2" class="cell cell-odd"></div>
+
+	<div data-cell="1,0" class="cell cell-even"></div>
+	<div data-cell="1,1" class="cell cell-odd"></div>
+	<div data-cell="1,2" class="cell cell-even"></div>
+  
+	<div data-cell="2,0" class="cell cell-odd"></div>
+	<div data-cell="2,1" class="cell cell-even"></div>
+	<div data-cell="2,2" class="cell cell-odd"></div>
+</div>	
+
+<script type="text/javascript">
+
+/*
+
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+
++---+---+---+
+|0,0|0,1|0,2|
++---+---+---+
+|1,0|1,1|1,2|
++---+---+---+
+|2,0|2,1|2,2|
++---+---+---+
+
+*/
+
+function proximaJogada(tabuleiro){
+	window.setTimeout(function(){
+		for(var x = 0; x < 3; x++){
+			for(var y = 0; y < 3; y++){
+				if(!tabuleiro[y][x]){
+					tabuleiro[y][x] = 'circle'; 
+					var cells = document.querySelectorAll('[data-cell]');
+					for(i in cells){
+						var cell = [x,y].join();
+						
+						var dataCell = cells[i].getAttribute("data-cell");
+						if(dataCell == cell){
+							cells[i].innerHTML = '<div class="circle"></div>';
+							return false;
+						}
+					}
+					return;
+				}
+			}
+		}
+	}, 500);
+}
+
+// Array definido 
+var tabuleiro = Array(
+	 Array(3)
+	,Array(3)
+	,Array(3)
+);	
+
+//                            |     \       /
+//Verifica Eixo a Eixo   ---, |  ,   \  ,  /   se alguem ganhou.
+//                            |       \   /
+
+function alguemGanhou(tabuleiro){
+	//tabuleiro[ - ][ | ]
+	
+	//Verifica eixo ---
+	for(var x = 0; x < 3; x++){
+		var cross_point = 0;
+		var circle_point = 0;
+		
+		for(var y = 0; y < 3; y++){
+			if(tabuleiro[y][x] == 'cross' ){
+				cross_point++;
+			}
+			
+			if(tabuleiro[y][x] == 'circle'){
+				circle_point++;
+			}
+			
+			if(cross_point == 3){
+				return 'cross';
+			}
+			
+			if(circle_point == 3){
+				return 'circle';
+			}
+		}
+	}
+	
+	//Verifica eixo | 
+	//Verifica eixo | 
+	//Verifica eixo | 
+	for(var y = 0; y < 3; y++){
+		var cross_point = 0;
+		var circle_point = 0;
+		
+		for(var x = 0; x < 3; x++){
+			if(tabuleiro[y][x] == 'cross' ){
+				cross_point++;
+			}
+			
+			if(tabuleiro[y][x] == 'circle'){
+				circle_point++;
+			}
+			
+			if(cross_point == 3){
+				return 'cross';
+			}
+			
+			if(circle_point == 3){
+				return 'circle';
+			}
+		}
+	}
+	
+	
+	
+	//Verifica eixo \
+	//Verifica eixo  \
+	//Verifica eixo   \
+	var cross_point = 0;
+	var circle_point = 0;
+	for(var i = 0; i < 3; i++){
+		if(tabuleiro[i][i] == 'cross' ){
+			cross_point++;
+		}
+		
+		if(tabuleiro[i][i] == 'circle' ){
+			circle_point++;
+		}
+		
+		if(cross_point == 3){
+			return 'cross';
+		}
+		
+		if(circle_point == 3){
+			return 'circle';
+		}
+	}
+	
+	
+	
+	//Verifica eixo /
+	//Verifica eixo /
+	//Verifica eixo /
+	var cross_point = 0;
+	var circle_point = 0;
+	for(var i = 2; i >= 0 ; i--){
+		
+		if(tabuleiro[i][i] == 'cross' ){
+			cross_point++;
+		}
+		
+		if(tabuleiro[i][i] == 'circle' ){
+			circle_point++;
+		}
+		
+		if(cross_point == 3){
+			return 'cross';
+		}
+		
+		if(circle_point == 3){
+			return 'circle';
+		}
+	}
+	return false;
+}
+
+var x_o = 0;
+
+//Adiciona Listeners-Clicks no tabuleiro.
+var cell = document.getElementsByClassName("cell");
+for (var i = 0; i < cell.length; i++) {
+    cell[i].addEventListener('click', function(){
+		
+		var cell_id = this.getAttribute("data-cell");
+		
+		var cell_xy = cell_id.split(',');
+		var x = parseInt(cell_xy[1]);
+		var y = parseInt(cell_xy[0]);
+		//console.log('x => ', x);console.log('y => ', y);
+		
+		
+		/*
+		if(this.hasChildNodes()){
+			alert('Já foi clicado');
+			return false;
+		}
+		*/
+		
+		
+		if(tabuleiro[x][y]){
+			alert('Já foi clicado');
+			return false;
+		}
+		
+		/*
+		//Desabilitado no modo IA x Human
+		if(x_o % 2 == 0){
+			this.innerHTML = '<div class="cross"></div>';
+			tabuleiro[x][y] = 'cross';
+		} else {
+			this.innerHTML = '<div class="circle"></div>';
+			tabuleiro[x][y] = 'circle';
+		}
+		x_o++;
+		*/
+		this.innerHTML = '<div class="cross"></div>';
+		tabuleiro[x][y] = 'cross';
+		
+		if(!alguemGanhou(tabuleiro)){
+			proximaJogada(tabuleiro);
+		}
+	}, false);
+}
+
+
+
+
+
+</script>
+</body>
+</html>
