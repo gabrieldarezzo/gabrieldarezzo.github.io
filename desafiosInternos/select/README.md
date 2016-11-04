@@ -15,3 +15,6 @@ UF: <select name="UF" id="uf">
 
 Resposta:
 https://github.com/gabrieldarezzo/desafiosInternos/blob/master/select/index.html
+
+Live: 
+http://gabrieldarezzo.github.io/desafiosInternos/select/index.html
