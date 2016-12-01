@@ -95,6 +95,8 @@ Uma dica bacana é fazer o curso interativo de jQuery da [CodeSchool](http://try
 </body>
 </html>
 ```
+(Live Show)
+http://gabrieldarezzo.github.io/desafiosInternos/ajax/trocar-texto.html
 
 ## 3 - Exemplo básico de Ajax (Pegar um arquivo.txt e exibir o conteúdo sem efetuar o refresh da pagina)  
 Basicamente aproveitamos o exemplo anterior que monitora o botão, e ao disparar a ação efetuamos uma requisição Ajax.  
@@ -106,35 +108,41 @@ Basicamente aproveitamos o exemplo anterior que monitora o botão, e ao disparar
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Ajax Exemplo com Ajax</title>
+	<title>Ajax Exemplo com TOP</title>
 	
 </head>
 <body>
-
-	<!-- Campo que vamos alterar -->
 	<input type="text" name="textao_do_feice" id="textao_do_feice" value="aqui é o texto antigo..."/>
+	<hr />
+	<button id="btn-action">Ajax, Test!</button>
 	
-	<!-- Nosso botãozinho maroto que dispara a ação -->
-	<button id="btn-action">Mudar - Texto</button>
 	
 	
-	<!-- jQuery cdn -->
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
+		$(document).ready(function() {
 		
-		$(document).ready(function() {		
 			$( "#btn-action" ).bind( "click", function() {
-			
-				//Seletor -> '$( "#textao_do_feice" )'
-				//Seletor -> Tudo passado dentro do val({DENTRO_DO_VAL}) é inserido dentro do atributo value....
-				//Caso não entendeu clica no botão 'Mudar - Texto' que você entende ....
-				$( "#textao_do_feice" ).val('O texto novo é esse...');
-			});		
+				$.ajax({
+					 url: 'arquivo.txt'
+					,type:'GET'
+					,dataType: 'html'
+					,success: function(resposta){
+						$( "#textao_do_feice" ).val(resposta);
+						//return true;
+					}
+					,error: function(json){
+						console.log(json);
+					}
+				});
+			});
 		});
 	</script>
 </body>
 </html>
 ```
+(Live Show)
+http://gabrieldarezzo.github.io/desafiosInternos/ajax/trocar-texto.html
 
 ## 4 - Enviar dados do Formulário via POST 
 Exemplo de como enviar um POST a partir de uma div dinâmica serialize()
@@ -200,7 +208,43 @@ Exemplo de como enviar um POST a partir de uma div dinâmica serialize()
 	</script>
 </body>
 </html>
+```  
+
+(file: 'cadastrar.php'):  
+```php
+<?php
+try{
+	if(!isset($_POST['nome']) || $_POST['nome'] == ''){
+		throw new Exception("Informe um nome");
+	}
+	
+	if(!isset($_POST['email']) || $_POST['email'] == ''){
+		throw new Exception("Informe um E-mail");
+	}
+	
+	
+	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+		throw new Exception("O e-mail precisa ser valido.");
+	}
+	
+	print json_encode(
+	array(
+		 'status' 	=> true
+		,'msg' 		=> 'E-mail cadastrado'
+	));
+
+} catch(Exception $ex){
+	print json_encode(
+		array(
+			 'status' 	=> false
+			,'msg' 		=> $ex->getMessage()
+		));
+	die();
+}
 ```
+
+
+
 
 ## 5 - Acompanhar oq foi enviado...
 -- As vezes o problema é na requisição...  
