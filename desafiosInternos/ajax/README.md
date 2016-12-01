@@ -56,10 +56,10 @@ http://gabrieldarezzo.github.io/desafiosInternos/ajax/click.html
 
 
 
-### 2 - Modificar um campo texto a partir do evento Click
-Antes de pensar em Ajax, você precisa saber alterar os elementos e seus atributos (value, text é um atributo (u.u)).
-Então outro exemplo bem básico caso você não manja alterar.
-Uma dica bacana é fazer o curso interativo de jQuery da  [CodeSchool](http://try.jquery.com/), você vai entender bem melhor esse lance de Seletores, DOM, Elements, Node, Childs, Parent, etc, etc, etc....
+### 2 - Modificar um campo texto a partir do evento Click  
+Antes de pensar em Ajax, você precisa saber alterar os elementos e seus atributos (value, text é um atributo (u.u)).  
+Então outro exemplo bem básico caso você não manja alterar.  
+Uma dica bacana é fazer o curso interativo de jQuery da [CodeSchool](http://try.jquery.com/) (É gratuito seu mão de vaca), você vai entender bem melhor esse lance de Seletores, DOM, Elements, Node, Childs, Parent, etc, etc, etc....  
 
 ```html
 <!DOCTYPE HTML>
@@ -210,5 +210,5 @@ Entenda como monitorar a requisição, acompanhando  o que foi enviado **(GET/PO
 Exemplo Abaixo pratico:  
 ![Fluxo de Debbug](https://gabrieldarezzo.github.io/imasters/img/ajax_fluxo.png)
 	
-Mais motivos para utilizar o Chrome:
+Mais motivos para utilizar o Chrome:  
 https://www.youtube.com/playlist?list=PLOU2XLYxmsILUKyjDYUVYLeq7yyTxM_3d
