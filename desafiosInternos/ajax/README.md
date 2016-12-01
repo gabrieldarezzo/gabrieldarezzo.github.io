@@ -96,11 +96,11 @@ Uma dica bacana é fazer o curso interativo de jQuery da [CodeSchool](http://try
 </html>
 ```
 
-## 3 - Exemplo básico de Ajax (Pegar um arquivo.txt e exibir o conteúdo sem efetuar o refresh da pagina)
-Basicamente aproveitamos o exemplo anterior que monitora o botão, e ao disparar a ação efetuamos uma requisição Ajax.
-(file: 'arquivo.txt'):
-```Olha que lekal veio de uma pagina externa sem efetuar o Refresh...```
-(file: 'trocar-texto.html'):	
+## 3 - Exemplo básico de Ajax (Pegar um arquivo.txt e exibir o conteúdo sem efetuar o refresh da pagina)  
+Basicamente aproveitamos o exemplo anterior que monitora o botão, e ao disparar a ação efetuamos uma requisição Ajax.  
+(file: 'arquivo.txt'):  
+```Olha que lekal veio de uma pagina externa sem efetuar o Refresh...```  
+(file: 'trocar-texto.html'):	  
 ```html
 <!DOCTYPE HTML>
 <html lang="en-US">
