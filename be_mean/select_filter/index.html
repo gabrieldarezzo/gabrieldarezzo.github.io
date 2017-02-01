@@ -1,0 +1,65 @@
+<!doctype hTML>
+<html lang="en" data-ng-app="myTest">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple test</title>
+	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+	
+	
+	<div ng-controller="HomeCtrl">
+	
+		<select ng-model="tipo_cadastro_id">
+			<option value="1">(1) - Freelancer</option>
+			<option value="2">(2) - Empresa</option>		
+		</select>
+	
+		<p>Tipo selecionado: {{tipo_cadastro_id}}</p>
+		
+		<!-- 
+			filterSelectByModel:this:'tipo_cadastro_id'
+			A ideia é passar o $scope + uma referencia do Model via string que quer filtra
+		-->
+		<select data-ng-model="tipo_id" ng-options="trabalho.id as trabalho.nome for trabalho in trabalhos | filterSelectByModel:this:'tipo_cadastro_id'">
+			<option value="">-- Selecione --</option>
+		</select>
+		<p>Tipo selecionado: {{tipo_id}}</p>
+		
+		
+	</div> <!-- ng-controller/HomeCtrl-->
+	
+	
+	
+	
+	<script type="text/javascript">		
+		var app = angular.module('myTest', [])
+			.filter('filterSelectByModel', function() {				
+				return function(object, scope, filterScope) {
+					//console.log(filterScope);
+					var auxArr = [];
+					angular.forEach(object, function (row) {
+						if (row[filterScope] == scope[filterScope]){
+							auxArr.push(row);
+						}
+					});
+					return auxArr;
+				}
+			})
+		;
+		
+		
+		app.controller('HomeCtrl', function ($scope){
+	
+			$scope.trabalhos = [
+				 {id : 1, nome : "France - Mainland", tipo_cadastro_id: 1 }
+				,{id : 2, nome : "Gibraltar", tipo_cadastro_id: 1}
+				,{id : 2, nome : "Giba", tipo_cadastro_id: 2}
+				,{id : 2, nome : "Ronaldo", tipo_cadastro_id: 2}
+			];
+		});
+		
+	</script>
+	
+</body>
+</html>
