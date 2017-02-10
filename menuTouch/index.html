@@ -1,0 +1,194 @@
+<!doctype html>
+<html ng-app="App">
+  <head>	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+
+	
+	
+	
+	
+	<!-- Bootstrap core CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">	
+	
+		@font-face {
+		  font-family: 'Roboto';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Roboto'), local('Roboto-Regular'), url(fonts/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+		}
+		
+		.touch-menu {
+			height: 100%;
+			min-height: 100%;
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		body{
+			background-color:  #e6e6e6;
+			font-family: 'Roboto', sans-serif;
+		}
+		
+		#menu-modulos li.active a{
+			background-color: #e6e6e6;			
+			border-color: #e6e6e6;
+			color: #337ab7;
+			border-bottom-color: #337ab7;
+		}
+		
+		#menu-modulos li.active a:hover{
+			border-color:  transparent;
+			background-color:  #e6e6e6;
+			border-bottom-color: #337ab7;
+		}
+		
+		#menu-modulos li a:hover, .nav-tabs>li>a:hover {
+			background-color:  #e6e6e6;
+			border-color: #e6e6e6;
+			color: #337ab7;
+			border-bottom-color: #dddddd;
+		}
+		
+		.tab-pane{		
+			position: relative;
+			overflow: hidden;
+		}
+		
+		#menu-modulos li{
+			width: 33%;
+			text-align: center;
+		}
+		
+		.tab-content{
+			padding-top: 20px;
+		}
+		
+		
+		/*Add cursor for DeskTop*/
+		.container {
+			cursor: -webkit-grab;
+		}
+		
+		.container:active {
+			cursor: -webkit-grabbing;
+		}
+	
+	</style>
+</head>
+<body >
+	<div class="container" ng-controller="ctrl">  
+		<ul id="menu-modulos" class="nav nav-tabs">
+			<li class="active">
+				<a data-toggle="tab" href="#recados" aria-expanded="true">Recados</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#avisos" aria-expanded="false">Avisos</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#eventos" aria-expanded="false">Eventos</a>
+			</li>
+		</ul>
+		
+		<div class="tab-content">
+		
+			<div id="recados" role="tabpanel" class="tab-pane fade in active" ng-swipe-right="menuInschoolRight(this)" ng-swipe-left="menuInschoolLeft(this)">
+				Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+			</div><!-- / #recados -->
+			
+			
+			<div id="avisos" role="tabpanel" class="tab-pane fade in" ng-swipe-right="menuInschoolRight()" ng-swipe-left="menuInschoolLeft(this)">
+				aralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+				Ntate inalterado. Se popularizou na década de 60, quando a Letrase
+			</div><!-- / #avisos -->
+			
+			<div id="eventos" role="tabpanel" class="tab-pane fade in" ng-swipe-right="menuInschoolRight()" ng-swipe-left="menuInschoolLeft(this)">
+				Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+				inando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda e
+			</div><!-- / #eventos -->
+			
+			
+		</div><!-- / .tab-content -->
+	</div>
+	
+	
+	<!-- Apenas Se utilizar Cordova
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	-->
+	
+	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="node_modules/angular-touch/angular-touch.js"></script>
+	
+	
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>	
+	
+	
+	
+	
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>	
+	
+	
+	
+	<script type="text/javascript">
+		
+		var positionActual = 0;		
+		
+		var menusArr = [];		
+		$( "#menu-modulos li a" ).each(function(i) {
+			
+			var auxHref = $(this).attr('href');
+			menusArr.push(auxHref);
+		});
+		//var menusArr = ["#recados", "#avisos", "#eventos"];
+		
+		angular.module('App', ['ngTouch'])
+		.controller('ctrl', ['$scope', function($scope) { 
+			
+			$scope.menuInschoolRight = function ($event) {				
+				//Bug?
+				//$('#menu-modulos li a:hover').css({'border-bottom-color' : '#e6e6e6'});
+				
+				var el = event.target;
+				
+				
+				var idAtualEl = '#' + $(el).attr('id');
+				var indexOfMenu = menusArr.indexOf(idAtualEl);
+				
+				if(indexOfMenu - 1 == menusArr.length){
+					return false;
+				}
+				
+				positionActual = positionActual - 1;
+				
+				var mv = menusArr[indexOfMenu - 1];
+				$('a[href="'+ mv +'"]').tab('show');
+			}
+			
+			$scope.menuInschoolLeft = function ($event) {
+				//Bug?
+				//$('#menu-modulos li a:hover').css({'border-bottom-color' : '#e6e6e6'});
+				var el = event.target;
+				
+				var idAtualEl = '#' + $(el).attr('id');
+				var indexOfMenu = menusArr.indexOf(idAtualEl);
+				
+				if(indexOfMenu + 1 == menusArr.length){
+					return false;
+				}
+				
+				positionActual = positionActual + 1;
+				
+				var mv = menusArr[indexOfMenu + 1];
+				$('a[href="'+ mv +'"]').tab('show');
+			}
+			
+		}]);
+	</script>
+</body>
+</html>
