@@ -68,6 +68,7 @@
 		
 		.tab-content{
 			padding-top: 20px;
+			min-height: 200px;
 		}
 		
 		
@@ -79,7 +80,48 @@
 		.tab-content:active {
 			cursor: -webkit-grabbing;
 		}
-	
+		
+		
+		/*Box Marquee*/
+		.box-marquee{
+			width: 100%;
+			height: 65px;
+		}
+		
+		.marquee-seta{
+			float:left;
+			width: 7%;
+		}
+		
+		.marquee-inside{
+			float:left;
+			width: 86%;
+			padding-top: 25px;
+		}
+		
+		.marquee-seta i{
+			font-size: 62px;
+		}
+		
+		/* Tentando o rodapé*/
+		.bigbox{
+			width: 100%;
+			height: 15px;
+			background-color: #fff;
+			border-radius: 3px;
+		}
+		
+		.bigbox-item{
+			width: 50%;
+			height: 100%;
+			float: left;
+		}
+		
+		.bb-left{
+			background-color : #49d;
+		}
+		
+		
 	</style>
 </head>
 <body >
@@ -100,6 +142,11 @@
 		
 			<div id="recados" role="tabpanel" class="tab-pane fade in active" ng-swipe-right="menuInschoolRight(this)" ng-swipe-left="menuInschoolLeft(this)">
 				Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+				
+				
+				
+				
+				
 			</div><!-- / #recados -->
 			
 			
@@ -117,29 +164,25 @@
 		</div><!-- / .tab-content -->
 		
 
-		
-		<div  style="with: 100%; height: 100%">
-			<div style="float:left;">
-				<i class="glyphicon glyphicon-arrow-left" style="font-size: 62px;"></i>
+		<div class="box-marquee">
+			<div class="marquee-seta">
+				<i class="glyphicon glyphicon-arrow-left"></i>
 			</div>
-			<div>
-				<marquee><img src="icon2.png" alt="" /></marquee>
+			<div class="marquee-inside">
+				<marquee behavior="alternate" truespeed="true" scrolldelay="20"><img src="icon2.png" alt="" /></marquee>
 			</div>
-			<div style="float:right;">
-				<i class="glyphicon glyphicon-arrow-right" style="font-size: 62px;"></i>
+			<div class="marquee-seta">
+				<i class="glyphicon glyphicon-arrow-right"></i>
 			</div>		
 		</div>
 		
-	
-		<br />
-		<br />
-		
-		
-		
-		
-		
-		
 		<hr />
+		
+		<div class="bigbox">
+			<div class="bigbox-item bb-left"></div>
+			<div class="bigbox-item bb-right"></div>
+		
+		</div>
 		
 		Esta demo é referente a este repo:
 		<a href="https://github.com/gabrieldarezzo/menuTouch">github.com/gabrieldarezzo/menuTouch</a>
@@ -155,7 +198,10 @@
 	<script type="text/javascript" src="node_modules/angular-touch/angular-touch.js"></script>
 	
 	
+	
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>	
+	<script type="text/javascript" src="node_modules/velocity-animate/velocity.min.js"></script>
+	<script type="text/javascript" src="node_modules/velocity-animate/velocity.ui.min.js"></script>
 	
 	
 	
@@ -180,9 +226,7 @@
 		.controller('ctrl', ['$scope', function($scope) { 
 			
 			$scope.menuInschoolRight = function ($event) {				
-				//Bug?
-				//$('#menu-modulos li a:hover').css({'border-bottom-color' : '#e6e6e6'});
-				
+			
 				var el = event.target;
 				
 				
@@ -196,12 +240,20 @@
 				positionActual = positionActual - 1;
 				
 				var mv = menusArr[indexOfMenu - 1];
-				$('a[href="'+ mv +'"]').tab('show');
+				
+				
+				$('#menu-modulos li').removeClass('active');
+				$(idAtualEl).velocity("transition.bounceRightOut", {
+					 duration :  "slow"					 
+					,complete : function(elements){
+						$(mv).velocity("transition.bounceLeftIn");
+						$('a[href="'+ mv +'"]').parent().addClass('active');
+					
+					}
+				});
 			}
 			
-			$scope.menuInschoolLeft = function ($event) {
-				//Bug?
-				//$('#menu-modulos li a:hover').css({'border-bottom-color' : '#e6e6e6'});
+			$scope.menuInschoolLeft = function ($event) {				
 				var el = event.target;
 				
 				var idAtualEl = '#' + $(el).attr('id');
@@ -214,7 +266,17 @@
 				positionActual = positionActual + 1;
 				
 				var mv = menusArr[indexOfMenu + 1];
-				$('a[href="'+ mv +'"]').tab('show');
+				
+				//console.log(idAtualEl);
+				$('#menu-modulos li').removeClass('active');				
+				$(idAtualEl).velocity("transition.bounceLeftOut", {
+					 duration :  "slow"					 
+					,complete : function(elements){
+						$(mv).velocity("transition.bounceRightIn");
+						$('a[href="'+ mv +'"]').parent().addClass('active');
+					
+					}
+				});
 			}
 			
 		}]);
