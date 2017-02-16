@@ -7,46 +7,53 @@
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
+	<meta name="description" content="Uma simples consulta no WebService da ViaCep para preencher o endereço utilizando o CEP">
+	<meta name="keywords" content="HTML,JS,JsVanilla,Vanilla,CEP, WebService,Estudo Js,Endereço Automatico">
+	<meta name="author" content="Gabriel Darezzo">
+
+	
 	<style type="text/css">
 		label{
-			display: block;
-		
+			display: block;		
+		}		
+		.big-field{
+			width: 100%;
+			max-width: 310px;
 		}
-	
 	</style>
 </head>
 <body>
 
 
 
-<form action="#" onsubmit="return false" class="col s12">
+<form action="#" onsubmit="return false">
 	<h5>Busca de CEP</h5>
 
-	<label for="cep" class="active" >Cep</label>
+	<label for="cep">Cep</label>
 	<input type="tel" placeholder="Informe o Cep" id="cep" name="cep" maxlength="8">
 	<!-- Repare no maxlength="8", assim apenas 8 digitos do cep são aceitos -->
 		
-	<label for="uf" class="active">UF</label>
+	<label for="uf" >UF</label>
 	<input type="text" placeholder="UF" name="uf" id="uf">
 	
 
-	<label for="cidade" class="active">Cidade</label>
+	<label for="cidade" >Cidade</label>
 	<input type="text" placeholder="Informe a cidade" id="cidade" name="cidade">
 		
-	<label for="bairro" class="active">Bairro</label>
+	<label for="bairro" >Bairro</label>
 	<input type="text" placeholder="Informe o Bairro" name="bairro" id="bairro">
 	
 	
-	<label for="endereco" class="active">Endereço</label>
-	<input type="text" placeholder="Informe o seu Endereço Ex:(Rua da Consolação)" name="endereco" id="endereco">
+	<label for="endereco" >Endereço</label>
+	<input type="text" class="big-field" placeholder="Informe o seu Endereço Ex:(Rua da Consolação)" name="endereco" id="endereco">
 	
-	<label for="nr_end" class="active">Número</label>
-	<input type="text" placeholder="Informe o número do endereço" name="nr_end" id="nr_end">
+	<label for="nr_end" >Número</label>
+	<input type="text" class="big-field" placeholder="Informe o número do endereço" name="nr_end" id="nr_end">
 	
 	<hr />
 		
 	<h3>Tecnologias:</h3>		
-	<ul class="collection with-header">
+	<ul>
 		
 		<li>JS - Vanilla</li>
 		<li>HTML</li>					
@@ -55,12 +62,7 @@
 	</ul>
 	
 	<p>Este tutorial é um bonus do '<a target="_new" href="https://github.com/gabrieldarezzo/desafiosInternos/tree/master/ajax">Guia definitivo AJAX</a>'
-	
-	
-	
 
-	
-	
 </form>
 
 
@@ -94,8 +96,7 @@
 		ajax.onreadystatechange = function() {
 			if(ajax.readyState == 4 && ajax.status == 200) {
 				
-				var json = JSON.parse(ajax.responseText);			
-				
+				var json = JSON.parse(ajax.responseText);							
 				document.getElementById('endereco').value = json.logradouro;
 				document.getElementById('bairro').value = json.bairro;
 				document.getElementById('cidade').value = json.localidade;
