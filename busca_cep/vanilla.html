@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Busca de CEP Ajax e WebService</title>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<style type="text/css">
+		label{
+			display: block;
+		
+		}
+	
+	</style>
+</head>
+<body>
+
+
+
+<form action="#" onsubmit="return false" class="col s12">
+	<h5>Busca de CEP</h5>
+
+	<label for="cep" class="active" >Cep</label>
+	<input type="tel" placeholder="Informe o Cep" id="cep" name="cep" maxlength="8">
+	<!-- Repare no maxlength="8", assim apenas 8 digitos do cep são aceitos -->
+		
+	<label for="uf" class="active">UF</label>
+	<input type="text" placeholder="UF" name="uf" id="uf">
+	
+
+	<label for="cidade" class="active">Cidade</label>
+	<input type="text" placeholder="Informe a cidade" id="cidade" name="cidade">
+		
+	<label for="bairro" class="active">Bairro</label>
+	<input type="text" placeholder="Informe o Bairro" name="bairro" id="bairro">
+	
+	
+	<label for="endereco" class="active">Endereço</label>
+	<input type="text" placeholder="Informe o seu Endereço Ex:(Rua da Consolação)" name="endereco" id="endereco">
+	
+	<label for="nr_end" class="active">Número</label>
+	<input type="text" placeholder="Informe o número do endereço" name="nr_end" id="nr_end">
+	
+	<hr />
+		
+	<h3>Tecnologias:</h3>		
+	<ul class="collection with-header">
+		
+		<li>JS - Vanilla</li>
+		<li>HTML</li>					
+		<li>Ajax</li>
+		<li>Consumo de WebService</li>
+	</ul>
+	
+	<p>Este tutorial é um bonus do '<a target="_new" href="https://github.com/gabrieldarezzo/desafiosInternos/tree/master/ajax">Guia definitivo AJAX</a>'
+	
+	
+	
+
+	
+	
+</form>
+
+
+<script type="text/javascript">
+
+	//Foca no Cep
+	document.getElementById('cep').focus();
+
+
+	var lastCepCheck = '';
+
+	document.getElementById('cep').addEventListener('keyup', function() {			
+		//Impede inserir algo alem de Números
+		this.value = this.value.replace(/[^0-9]/, "");
+		
+		//Pega apenas os números
+		var cep = this.value.replace(/[^0-9]/, "");
+		
+		//Só pesquisa se tiver 8 caracteres e o ultimo cep pesquisado seja diferente do atual.
+		if(cep.length != 8 || lastCepCheck == cep){
+			return false;
+		}
+		lastCepCheck = cep;
+		
+		ajax = new XMLHttpRequest();
+		
+		var url = "http://viacep.com.br/ws/"+cep+"/json/";		
+		ajax.open('GET', url, true);
+		ajax.send();
+		
+		ajax.onreadystatechange = function() {
+			if(ajax.readyState == 4 && ajax.status == 200) {
+				
+				var json = JSON.parse(ajax.responseText);			
+				
+				document.getElementById('endereco').value = json.logradouro;
+				document.getElementById('bairro').value = json.bairro;
+				document.getElementById('cidade').value = json.localidade;
+				document.getElementById('uf').value = json.uf;
+				document.getElementById('nr_end').focus();
+			}
+		}
+	});		
+</script>
+</body>
+</html>

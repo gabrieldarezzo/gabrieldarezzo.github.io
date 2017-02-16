@@ -12,4 +12,13 @@ Curto muito o lance de UX e pequenas facilidades para o usuário acabam virando 
 Demo Live:
 http://gabrieldarezzo.github.io/busca_cep/
 
+--------------
+
+Pq não fazer SEM jQuery/Plugin?!
+
+Vanilla-Power-Code:
+https://github.com/gabrieldarezzo/gabrieldarezzo.github.io/blob/master/busca_cep/vanilla.html
+
+Vanilla Cep - Demo:
+http://gabrieldarezzo.github.io/busca_cep/vanilla.html
 
