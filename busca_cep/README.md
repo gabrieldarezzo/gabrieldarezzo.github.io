@@ -17,14 +17,14 @@ Curto muito o lance de UX e pequenas facilidades para o usuário acabam virando 
 
 --------------
 
-Versão jQuery:  
+## Versão jQuery:  
 Code:  
 https://github.com/gabrieldarezzo/gabrieldarezzo.github.io/blob/master/busca_cep/index.html  
 Demo Live:  
 http://gabrieldarezzo.github.io/busca_cep/
 
 
-Pq não fazer SEM jQuery/Plugin?!
+## Pq não fazer SEM jQuery/Plugin?!
 Vanilla-Power-Code:  
 https://github.com/gabrieldarezzo/gabrieldarezzo.github.io/blob/master/busca_cep/vanilla.html  
 
@@ -32,7 +32,7 @@ Demo Live:
 http://gabrieldarezzo.github.io/busca_cep/vanilla.html  
 
 
-O colega @angelorubin fez um exemplo com Vue.js, Axios (HTTP client in NodeJs) , Bulma (CSS) consultando o ViaCep    
+## O colega @angelorubin fez um exemplo com Vue.js, Axios (HTTP client in NodeJs) , Bulma (CSS) consultando o ViaCep    
 (Code + Demo Live)
 https://jsbin.com/muroxig/edit?html,js,output
 
