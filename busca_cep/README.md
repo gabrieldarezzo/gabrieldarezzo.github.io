@@ -22,3 +22,11 @@ https://github.com/gabrieldarezzo/gabrieldarezzo.github.io/blob/master/busca_cep
 Vanilla Cep - Demo:  
 http://gabrieldarezzo.github.io/busca_cep/vanilla.html  
 
+
+
+O colega @angelorubin fez um exemplo com Vue.js, Axios (HTTP client in NodeJs) , Bulma (CSS) consultando o ViaCep  
+https://jsbin.com/muroxig/edit?html,js,output
+
+
+
+
