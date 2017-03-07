@@ -67,12 +67,18 @@
 	<div class="row">
 		<div class="input-field col s12">
 			<label for="decimal" class="active">Número Decimal:</label>
-			<input type="tel" placeholder="Informe um número decimal" id="decimal" autofocus>
+			<input type="tel" placeholder="Informe um número decimal" id="decimal" autofocus maxlength="4">
 		</div>
 		
 		<div class="input-field col s12">
 			<label for="roman" class="active">Número Romano:</label>
 			<input type="text" class="roman" id="roman" readonly="readonly">
+		</div>
+	</div>
+	
+	<div class="row" style="display:none" id="prova-real-box">
+		<div class="col s12">
+			<a target="_new" id="prova-real" href=""></a>
 		</div>
 	</div>
 	
@@ -137,11 +143,18 @@
 	
 		input = input.replace(/[^0-9]/, "");
 		if(input == '') return'';
+		
+		var number = parseInt(input);
+		
+		if(number > 1999){
+			return "número maximo '1999'";
+		}
+		
 	
 		//Descobre se é Unidade, Dezena, Centana, Milhar
 		var orderNumber = Number(input).toString();
 		var orderLength = orderNumber.length;
-		var number = parseInt(input);
+		
 		
 		var unidadeDezenaCentena = orderLength - 1;
 		
@@ -167,6 +180,14 @@
 		var romanNumber = romanJs(this.value);
 		
 		document.getElementById("roman").value = romanNumber;
+		
+		var numberCheck = this.value.replace(/[^0-9]/, "");
+		if(numberCheck == '') return false;
+		
+		var provaReal = 'http://numeracaoromana.babuo.com/'+ numberCheck + '-em-numeros-romanos';
+		document.getElementById("prova-real-box").style = "display: block";
+		document.getElementById("prova-real").href = provaReal;
+		document.getElementById("prova-real").innerHTML  = 'Checar:' + numberCheck;
 	});
 </script>
 </body>
