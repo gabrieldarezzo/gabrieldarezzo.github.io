@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<link href="http://fonts.googleapis.com/icon?family=Cinzel" rel="stylesheet">
+	
+	
+	
+	<style type="text/css">
+	
+		input{
+			text-align: center;
+		}
+		
+		input[type="text"]{
+			font-size:30px; 
+			font-family: "Cinzel", Cinzel;
+			font-weight: bold;
+			color: #000 !important;
+		}
+	
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<h4>Número Decimal -> Romano</h4>
+	</div>
+	
+	<div class="row">
+		<div class="input-field col s12">
+			<label for="decimal" class="active">Número Decimal:</label>
+			<input type="tel" placeholder="Informe um número decimal" id="decimal" autofocus>
+		</div>
+		
+		<div class="input-field col s12">
+			<label for="roman" class="active">Número Romano:</label>
+			<input type="text" class="roman" id="roman" readonly="readonly">
+		</div>
+	</div>
+	
+			
+
+</div>
+	
+	
+<script type="text/javascript">	
+	const numberMap = {
+		//Unidade
+		0 : [
+			 ''		//0
+			,'I' 	//1
+			,'II'	//2
+			,'III'	//3
+			,'IV'	//4
+			,'V'	//5
+			,'VI'	//6
+			,'VII'	//7
+			,'VIII'	//8
+			,'IX'	//9				
+		]
+		//Dezena
+		,1 : [
+			 ''		//10
+			,'X'	//10
+			,'XX'   //20
+			,'XXX'  //30
+			,'XL'   //40
+			,'L'    //50
+			,'LX'   //60
+			,'LXX'  //70
+			,'LXXX' //80
+			,'XC'   //90
+		]
+		,2 : [
+			''
+			,'C'	//100
+			,'CC'   //200
+			,'CCC'  //300				
+			,'CD'   //400
+			,'D'    //500
+			,'DC'   //600
+			,'DCC'  //700
+			,'DCCC' //800
+			,'CM' 	//900
+		]
+		,3 : [
+			 ''
+			,'M' //1000
+		]
+	};
+	
+	function romanJs(input){		
+	
+		input = input.replace(/[^0-9]/, "");
+		if(input == '') return'';
+	
+		//Descobre se é Unidade, Dezena, Centana, Milhar
+		var orderNumber = Number(input).toString();
+		var orderLength = orderNumber.length;
+		var number = parseInt(input);
+		
+		var unidadeDezenaCentena = orderLength - 1;
+		
+		
+		var newOrder = '';
+		for(var i = unidadeDezenaCentena; i >= 0 ;i--){
+			newOrder = newOrder + orderNumber.charAt(i);
+		}
+		
+		var finalCast = '';
+		for(var i = unidadeDezenaCentena; i >= 0 ;i--){
+			var auxVar = parseInt(newOrder.charAt(i));
+			finalCast = finalCast + numberMap[i][auxVar];
+		}
+		
+		return finalCast;
+	}
+	
+	//var numberToCast = 100;
+	//var result = romanJs(numberToCast);
+	
+	document.getElementById("decimal").addEventListener('keyup', function() {		
+		var romanNumber = romanJs(this.value);
+		
+		document.getElementById("roman").value = romanNumber;
+	});
+</script>
+</body>
+</html>
