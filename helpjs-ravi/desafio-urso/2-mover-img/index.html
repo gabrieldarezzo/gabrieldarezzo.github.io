@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="pt_BR">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<style type="text/css">
+	
+	html, body {
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	body {
+		width: 100%;
+	
+	}
+
+	#urso-img {
+		position: fixed;
+		
+	}
+	</style>
+</head>
+<body>
+
+<!-- Carregamos todas as imagems primeiramente... assim evita de loading durante a animação. -->
+<img id="urso-img" src="https://raw.githubusercontent.com/gabrieldarezzo/helpjs-ravi/master/images/chara-1.png"/>
+
+<script type="text/javascript">
+const larguraDaTela = window.screen.availWidth;
+var position = 0;
+var aumentar = true;
+
+setInterval(function(){
+
+	if( position > (larguraDaTela + 30) ) {
+		return false;
+	}
+	
+	document.getElementById("urso-img").style = "left: " + position + "px;";
+	
+	position +=4;
+}, 200);
+
+
+
+
+</script>
+</body>
+</html>
