@@ -16,9 +16,8 @@ Posta o link aqui
 
 #codeChallenge #dev #career
 
-```''
-
+```  
 
 # Demo
-Para acessar o live demo online: LINK
+Para acessar o live demo online: http://gabrieldarezzo.github.io
 
