@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  height:100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  font-family: "Noto Serif";
+  background-color: #fff;
+}
+
+a {color:#0000FF;}         /* Unvisited link  */
+a:visited {color:#0000FF;} /* Visited link    */
+a:hover {color:#0000FF;}   /* Mouse over link */
+a:active {color:#0000FF;}  /* Selected link   */
+
+.me {
+  font-size: 40px;
+  padding: 26px;
+}
+
+.role {
+  font-size: 32px;
+  padding: 26px;
+}
+
+.main-header {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: #fec63e;
+}
+
+.presentation {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px 0;
+}
+
+.main-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+.ps {
+  font-size: 0.9em;
+}
+
+.contacts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+/*
+ul
+  li
+    a
+    a
+*/
+.contacts li {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-bottom: 10px;
+}
+
+.link-service {
+  height: 67px;
+}
+
+
+.small-icon {
+  max-width: 56px;
+}
+
+.projects-container {
+
+}
+
+.projects-title {
+  font-size: 3em;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+
+.projects li {
+  list-style: none;
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
